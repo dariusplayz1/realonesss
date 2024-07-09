@@ -3090,20 +3090,6 @@ do
             Trigger.TextColor3 = Color3.fromRGB(0, 0, 0)
             Trigger.TextSize = 14.000
 --
-
-        library.began[#library.began + 1] = Trigger.InputBegan:Connect(function(Input)
-            if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
-                slider.holding = true
-                activateSlider()
-            end
-        end)
-        --
-        library.ended[#library.ended + 1] = uis.InputEnded:Connect(function(Input)
-            if Input.UserInputType == Enum.UserInputType.MouseButton1 and slider.holding and not window.isVisible then
-                slider.holding = false
-            end
-        end)
-
         --
         function slider:Set(value)
             local oldval = slider.current
@@ -3150,8 +3136,11 @@ do
         --
         slider:Set(def)
         --
+	slider.holding = false
+		
         function activateSlider()
-	
+
+	slider.holding = true
             while slider.holding do
                 slider:Refresh()
                 task.wait()
@@ -3159,11 +3148,21 @@ do
             
         end
         
-        
-        --[[
+        library.began[#library.began + 1] = Trigger.InputBegan:Connect(function(Input)
+            if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
+                activateSlider()
+            end
+        end)
+        --
+        library.ended[#library.ended + 1] = uis.InputEnded:Connect(function(Input)
+            if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
+                slider.holding = false
+            end
+        end)
+
         if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " and not library.pointers[tostring(pointer)] then
             library.pointers[tostring(pointer)] = slider
-        end]]
+        end
         --
         return slider
     end
