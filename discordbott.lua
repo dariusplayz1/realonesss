@@ -3160,10 +3160,10 @@ do
         end
         
         
-        --
+        --[[
         if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " and not library.pointers[tostring(pointer)] then
             library.pointers[tostring(pointer)] = slider
-        end
+        end]]
         --
         return slider
     end
