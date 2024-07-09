@@ -3201,7 +3201,7 @@ do
             return slider.current
         end
         --
-        slider:Set(def)
+        --slider:Set(def)
         --
         function activateSlider()
 	
