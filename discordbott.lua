@@ -3091,6 +3091,21 @@ do
             str.Color = Color3.fromRGB(48,48,48)
             str.Enabled = true
             library.objects[str] = true
+
+--
+        library.began[#library.began + 1] = Trigger.InputBegan:Connect(function(Input)
+            if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
+                slider.holding = true
+                activateSlider()
+            end
+        end)
+        --
+        library.ended[#library.ended + 1] = uis.InputEnded:Connect(function(Input)
+            if Input.UserInputType == Enum.UserInputType.MouseButton1 and slider.holding and not window.isVisible then
+                slider.holding = false
+            end
+        end)
+        --
         else
            
             Slider.Name = "Slider"
@@ -3153,6 +3168,20 @@ do
             str.Color = Color3.fromRGB(48,48,48)
             str.Enabled = true
              library.objects[str] = true
+--
+        library.began[#library.began + 1] = Trigger.InputBegan:Connect(function(Input)
+            if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
+                slider.holding = true
+                activateSlider()
+            end
+        end)
+        --
+        library.ended[#library.ended + 1] = uis.InputEnded:Connect(function(Input)
+            if Input.UserInputType == Enum.UserInputType.MouseButton1 and slider.holding and not window.isVisible then
+                slider.holding = false
+            end
+        end)
+        --
         end
 
         --
@@ -3209,20 +3238,7 @@ do
             end
             
         end
-        --
-        library.began[#library.began + 1] = Trigger.InputBegan:Connect(function(Input)
-            if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
-                slider.holding = true
-                activateSlider()
-            end
-        end)
-        --
-        library.ended[#library.ended + 1] = uis.InputEnded:Connect(function(Input)
-            if Input.UserInputType == Enum.UserInputType.MouseButton1 and slider.holding and not window.isVisible then
-                slider.holding = false
-            end
-        end)
-        --
+        
         
         --
         if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " and not library.pointers[tostring(pointer)] then
