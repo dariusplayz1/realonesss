@@ -3004,7 +3004,7 @@ do
         local page = self.page
         local section = self
         --
-        local slider = {min = min, max = max, Disabled = false, sub = sub, decimals = decimals, axis = section.currentAxis, current = -99999, holding = false,Trigger = nil,Display = nil,Fill = nil}
+        local slider = {min = min, max = max, Disabled = false, sub = sub, decimals = decimals, axis = section.currentAxis, current = -99999, holding = false,Trigger = nil,Display = nil}
         --
 
 	  local Slider = Instance.new("Frame")
