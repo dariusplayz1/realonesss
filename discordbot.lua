@@ -1,6 +1,6 @@
 --[[
   Private library owned by dadu
-  last modified: 30/06/2024
+  last modified: 10/07/2024
   
   will use in the next project [destiny] or [nomercy]
 
@@ -8,8 +8,6 @@
 
     - esp preview
     - tool tips
-    - keybinds
-    - indicators
     - inv viewer
 
 ]]
@@ -924,7 +922,7 @@ do
         Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         Frame.BorderColor3 = Color3.fromRGB(1, 1, 1)
         Frame.BorderSizePixel = 2
-        Frame.Size = UDim2.new(0, 83, 0, 30)
+        Frame.Size = UDim2.new(0, 100, 0, 30)
         library.objects[Frame] = true
         page["Frame"] = Frame
 
