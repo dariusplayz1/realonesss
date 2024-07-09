@@ -3075,7 +3075,7 @@ do
             library.objects[TextLabel] = true
 
             Display.Name = "Display"
-            Display.Parent = Fill
+            Display.Parent = slider.Fill
             Display.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Display.BackgroundTransparency = 1.000
             Display.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -3142,8 +3142,7 @@ slider.Display = Display
 	    slider.Trigger = Trigger
 
             Display.Name = "Display"
-            Display.Name = "Display"
-            Display.Parent = Fill
+            Display.Parent = slider.Fill
             Display.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Display.BackgroundTransparency = 1.000
             Display.BorderColor3 = Color3.fromRGB(0, 0, 0)
