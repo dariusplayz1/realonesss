@@ -3006,6 +3006,9 @@ do
         --
         local slider = {min = min, max = max, Disabled = false, sub = sub, decimals = decimals, axis = section.currentAxis, current = -99999, holding = false,Trigger = nil}
         --
+
+        if name then
+
         local Slider = Instance.new("Frame")
         local SliderFrame = Instance.new("Frame")
         local Fill = Instance.new("Frame")
@@ -3014,8 +3017,7 @@ do
 
         local Display = Instance.new("TextLabel")
 
-        if name then
-             
+
             Slider.Name = "Slider"
             Slider.Parent = section.sectionFrame
             Slider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -3092,7 +3094,14 @@ do
             str.Enabled = true
             library.objects[str] = true
         else
-           
+
+        local Slider = Instance.new("Frame")
+        local SliderFrame = Instance.new("Frame")
+        local Fill = Instance.new("Frame")
+        local Trigger = Instance.new("TextButton")
+        local TextLabel = Instance.new("TextLabel")
+
+
             Slider.Name = "Slider"
             Slider.Parent = section.sectionFrame
             Slider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
