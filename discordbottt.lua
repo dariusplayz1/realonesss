@@ -3043,19 +3043,6 @@ do
             FillBG.Size = UDim2.new(0, 0, 0, 8)
             library.objects[FillBG] = true
 
-            Trigger.Name = "Trigger"
-            Trigger.Parent = SliderFrame
-            Trigger.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            Trigger.BackgroundTransparency = 1.000
-            Trigger.BorderColor3 = Color3.fromRGB(0, 0, 0)
-            Trigger.BorderSizePixel = 0
-            Trigger.Position = UDim2.new(0, 0, -0.161560059, 0)
-            Trigger.Size = UDim2.new(0, 167, 0, 9)
-            Trigger.Font = Enum.Font.SourceSans
-            Trigger.Text = ""
-            Trigger.TextColor3 = Color3.fromRGB(0, 0, 0)
-            Trigger.TextSize = 14.000
-
             TextLabel.Parent = Slider
             TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             TextLabel.BackgroundTransparency = 1.000
@@ -3092,19 +3079,7 @@ do
             str.Enabled = true
             library.objects[str] = true
 
---
-        library.began[#library.began + 1] = Trigger.InputBegan:Connect(function(Input)
-            if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
-                slider.holding = true
-                activateSlider()
-            end
-        end)
-        --
-        library.ended[#library.ended + 1] = uis.InputEnded:Connect(function(Input)
-            if Input.UserInputType == Enum.UserInputType.MouseButton1 and slider.holding and not window.isVisible then
-                slider.holding = false
-            end
-        end)
+
         --
         else
            
@@ -3134,19 +3109,6 @@ do
             FillBG.Size = UDim2.new(0, 0, 0, 8)
            library.objects[FillBG] = true
 
-            Trigger.Name = "Trigger"
-            Trigger.Parent = SliderFrame
-            Trigger.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            Trigger.BackgroundTransparency = 1.000
-            Trigger.BorderColor3 = Color3.fromRGB(0, 0, 0)
-            Trigger.BorderSizePixel = 0
-            Trigger.Position = UDim2.new(0, 0, -0.161560059, 0)
-            Trigger.Size = UDim2.new(0, 167, 0, 9)
-            Trigger.Font = Enum.Font.SourceSans
-            Trigger.Text = ""
-            Trigger.TextColor3 = Color3.fromRGB(0, 0, 0)
-            Trigger.TextSize = 14.000
-
             Display.Name = "Display"
             Display.Parent = FillBG
             Display.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -3168,7 +3130,23 @@ do
             str.Color = Color3.fromRGB(48,48,48)
             str.Enabled = true
              library.objects[str] = true
+        --
+        end
+
+            Trigger.Name = "Trigger"
+            Trigger.Parent = SliderFrame
+            Trigger.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Trigger.BackgroundTransparency = 1.000
+            Trigger.BorderColor3 = Color3.fromRGB(0, 0, 0)
+            Trigger.BorderSizePixel = 0
+            Trigger.Position = UDim2.new(0, 0, -0.161560059, 0)
+            Trigger.Size = UDim2.new(0, 167, 0, 9)
+            Trigger.Font = Enum.Font.SourceSans
+            Trigger.Text = ""
+            Trigger.TextColor3 = Color3.fromRGB(0, 0, 0)
+            Trigger.TextSize = 14.000
 --
+
         library.began[#library.began + 1] = Trigger.InputBegan:Connect(function(Input)
             if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
                 slider.holding = true
@@ -3181,8 +3159,6 @@ do
                 slider.holding = false
             end
         end)
-        --
-        end
 
         --
         function slider:Set(value)
