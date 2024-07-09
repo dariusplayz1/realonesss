@@ -3004,7 +3004,7 @@ do
         local page = self.page
         local section = self
         --
-        local slider = {min = min, max = max, Disabled = false, sub = sub, decimals = decimals, axis = section.currentAxis, current = -99999, holding = false,Trigger = nil,Display = nil}
+        local slider = {min = min, max = max, Disabled = false, sub = sub, decimals = decimals, axis = section.currentAxis, current = -99999, holding = false,Trigger = nil,Display = nil,Fill = nil}
         --
 
 	  local Slider = Instance.new("Frame")
@@ -3043,6 +3043,7 @@ do
             Fill.BorderColor3 = Color3.fromRGB(0, 0, 0)
             Fill.BorderSizePixel = 0
             Fill.Size = UDim2.new(0, 0, 0, 8)
+	    slider.Fill = Fill
             library.objects[Fill] = true
 
             Trigger.Name = "Trigger"
@@ -3123,6 +3124,7 @@ slider.Display = Display
             Fill.BorderColor3 = Color3.fromRGB(0, 0, 0)
             Fill.BorderSizePixel = 0
             Fill.Size = UDim2.new(0, 0, 0, 8)
+           slider.Fill = Fill
            library.objects[Fill] = true
 
             Trigger.Name = "Trigger"
@@ -3175,7 +3177,7 @@ slider.Display = Display
                 local percent = 1 - ((slider.max - slider.current) / (slider.max - slider.min))
                 print(percent)
                 slider.Display.Text = disabledtext or (slider.current..slider.sub) -- "/"..maxtext..slider.sub
-                Fill.Size = UDim2.new(percent,0,0,8)
+                 slider.Fill = Fill.Size = UDim2.new(percent,0,0,8)
                 slider.Disabled = disabledtext ~= nil and disabledtext ~= false
                 callback(slider.current)
             end
@@ -3187,13 +3189,13 @@ slider.Display = Display
   
 
             if (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset <= 1 and (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset >= 0 then
-            Fill.Size = UDim2.new((mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset,0,0,8)
+             slider.Fill = Fill.Size = UDim2.new((mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset,0,0,8)
             percent = ((mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset)
             elseif (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset <= 0 then
-            Fill.Size = UDim2.new(0,0,0,8)
+             slider.Fill = Fill.Size = UDim2.new(0,0,0,8)
             percent = 0
             elseif (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset >= 1 then
-            Fill.Size = UDim2.new(1,0,0,8)
+             slider.Fill = Fill.Size = UDim2.new(1,0,0,8)
             percent = 1
             end
 
