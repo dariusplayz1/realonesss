@@ -3201,7 +3201,7 @@ do
             return slider.current
         end
         --
-        --slider:Set(def)
+        slider:Set(def)
         --
         function activateSlider()
 	
@@ -3214,6 +3214,7 @@ do
         --
         library.began[#library.began + 1] = slider.Trigger.InputBegan:Connect(function(Input)
             if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
+		print("sall")
                 slider.holding = true
                 activateSlider()
             end
