@@ -2983,191 +2983,7 @@ do
         section.frame.Size = UDim2.new(0, 230, 0, section.UIListLayout.AbsoluteContentSize.Y + 7)
         return toggle
     end
-    --
-    function sections:Slider(info)
-        --
-        local info = info or {}
-        local name = info.name or info.Name or info.title or info.Title
-        local def = info.def or info.Def or info.default or info.Default or 10
-        local min = info.min or info.Min or info.minimum or info.Minimum or 0
-        local max = info.max or info.Max or info.maximum or info.Maximum or 100
-        local maxtext = info.maximumtext or info.Maximumtext or info.maximumText or info.MaximumText or max
-        local sub = info.suffix or info.Suffix or info.ending or info.Ending or info.prefix or info.Prefix or info.measurement or info.Measurement or ""
-        local disable = info.disable or info.Disable or info.disabled or info.disabled or false
-        local decimals = info.decimals or info.Decimals or 1
-        decimals = 1 / decimals
-        local pointer = info.pointer or info.Pointer or info.flag or info.Flag or nil
-        local callback = info.callback or info.callBack or info.Callback or info.CallBack or function()end
-        def = math.clamp(def, min, max)
-        --
-        local window = self.window
-        local page = self.page
-        local section = self
-        --
-        local slider = {min = min, max = max, Disabled = false, sub = sub, decimals = decimals, axis = section.currentAxis, current = -99999, holding = false}
-        --
- 
-            local Display = Instance.new("TextLabel")
-            local Slider = Instance.new("Frame")
-            local SliderFrame = Instance.new("Frame")
-            local FillBG = Instance.new("Frame")
-            local Trigger = Instance.new("TextButton")
-            local TextLabel = Instance.new("TextLabel")
-	
-    
-            Slider.Name = "Slider"
-            Slider.Parent = section.sectionFrame
-            Slider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            Slider.BackgroundTransparency = 2.000
-            Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
-            Slider.BorderSizePixel = 0
-            Slider.Position = UDim2.new(0, 0, 0.976744175, 0)
-            Slider.Size = UDim2.new(0, 220, 0, 28)
-
-            SliderFrame.Name = "SliderFrame"
-            SliderFrame.Parent = Slider
-            SliderFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-            SliderFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
-            SliderFrame.BorderSizePixel = 2
-            SliderFrame.Position = UDim2.new(0.118181542, 0, 0.540547907, 4)
-            SliderFrame.Size = UDim2.new(0, 165, 0, 8)
-            library.objects[SliderFrame] = true
-
-            FillBG.Name = "FillBG"
-            FillBG.Parent = SliderFrame
-            FillBG.BackgroundColor3 = Color3.fromRGB(170, 85, 235)
-            FillBG.BorderColor3 = Color3.fromRGB(0, 0, 0)
-            FillBG.BorderSizePixel = 0
-            FillBG.Size = UDim2.new(0, 0, 0, 8)
-            library.objects[FillBG] = true
-	    slider.FillBG = FillBG
-
-            TextLabel.Parent = Slider
-            TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            TextLabel.BackgroundTransparency = 1.000
-            TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-            TextLabel.BorderSizePixel = 0
-            TextLabel.Position = UDim2.new(0.118181817, 0, 0.0700000003, -5)
-            TextLabel.Size = UDim2.new(0, 124, 0, 22)
-            TextLabel.FontFace = library.font
-            TextLabel.Text = name
-            TextLabel.TextColor3 = Color3.fromRGB(180, 180, 180)
-            TextLabel.TextSize = 9.000
-            TextLabel.TextXAlignment = Enum.TextXAlignment.Left
-            library.objects[TextLabel] = true
-
-            Display.Name = "Display"
-            Display.Parent = FillBG
-            Display.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            Display.BackgroundTransparency = 1.000
-            Display.BorderColor3 = Color3.fromRGB(0, 0, 0)
-            Display.BorderSizePixel = 0
-            Display.Position = UDim2.new(1, 0, 0, 6)
-            Display.Size = UDim2.new(0, 0, 1, 0)
-            Display.ZIndex = 100
-            Display.FontFace = library.font
-            Display.Text = "0"
-            Display.TextColor3 = Color3.fromRGB(140, 140, 140)
-            Display.TextSize = 9.000
-            Display.TextStrokeTransparency = 0.730
-            library.objects[Display] = true
-
-            local str = Instance.new("UIStroke",SliderFrame)
-            str.Thickness = 1
-            str.Color = Color3.fromRGB(48,48,48)
-            str.Enabled = true
-            library.objects[str] = true
-
-            Trigger.Name = "Trigger"
-            Trigger.Parent = SliderFrame
-            Trigger.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            Trigger.BackgroundTransparency = 1.000
-            Trigger.BorderColor3 = Color3.fromRGB(0, 0, 0)
-            Trigger.BorderSizePixel = 0
-            Trigger.Position = UDim2.new(0, 0, -0.161560059, 0)
-            Trigger.Size = UDim2.new(0, 167, 0, 9)
-            Trigger.Font = Enum.Font.SourceSans
-            Trigger.Text = ""
-            Trigger.TextColor3 = Color3.fromRGB(0, 0, 0)
-            Trigger.TextSize = 14.000
-            slider.Trigger = Trigger
-        --
-        function slider:Set(value)
-            local oldval = slider.current
-            --
-            slider.current = math.clamp(math.round(value * slider.decimals) / slider.decimals, slider.min, slider.max)
-            --
-            if slider.current ~= oldval then
-                local disabledtext = disable and ((slider.current <= disable[2] or slider.current >= disable[3]) and disable[1])
-                local percent = 1 - ((slider.max - slider.current) / (slider.max - slider.min))
-                print(percent)
-                Display.Text = disabledtext or (slider.current..slider.sub) -- "/"..maxtext..slider.sub
-                slider.FillBG.Size = UDim2.new(percent,0,0,8)
-                slider.Disabled = disabledtext ~= nil and disabledtext ~= false
-                callback(slider.current)
-            end
-        end
-        --
-        function slider:Refresh()
-            local mouseLocation = utility:MouseLocation()
-            local percent;
-  
-
-            if (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset <= 1 and (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset >= 0 then
-            slider.FillBG.Size = UDim2.new((mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset,0,0,8)
-            percent = ((mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset)
-            elseif (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset <= 0 then
-            slider.FillBG.Size = UDim2.new(0,0,0,8)
-            percent = 0
-            elseif (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset >= 1 then
-            slider.FillBG.Size = UDim2.new(1,0,0,8)
-            percent = 1
-            end
-
-            warn(percent)
-
-            local value = math.round((slider.min + (slider.max - slider.min) * percent) * slider.decimals) / slider.decimals
-            value = math.clamp(value, slider.min, slider.max)
-            slider:Set(value)
-        end
-        --
-        function slider:Get()
-            return slider.current
-        end
-        --
-        slider:Set(def)
-        --
-	slider.holding = false
-		
-        function activateSlider()
-
-	slider.holding = true
-            while slider.holding do
-                slider:Refresh()
-                task.wait()
-            end
-            
-        end
-        
-        library.began[#library.began + 1] = slider.Trigger.InputBegan:Connect(function(Input)
-            if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
-                activateSlider()
-            end
-        end)
-        --
-        library.ended[#library.ended + 1] = uis.InputEnded:Connect(function(Input)
-            if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
-                slider.holding = false
-            end
-        end)
-
-        if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " and not library.pointers[tostring(pointer)] then
-            library.pointers[tostring(pointer)] = slider
-        end
-        --
-        return slider
-    end
-    --
+	--
     function sections:Dropdown(info)
 
         local info = info or {}
@@ -3550,7 +3366,7 @@ do
 
         return dropdown
     end
-
+  
     function sections:Multibox(info)
 
         local info = info or {}
@@ -3999,6 +3815,189 @@ do
         section.frame.Size = UDim2.new(0, 230, 0, section.UIListLayout.AbsoluteContentSize.Y + 7)
       end
         return multibox
+    end
+    function sections:Slider(info)
+        --
+        local info = info or {}
+        local name = info.name or info.Name or info.title or info.Title
+        local def = info.def or info.Def or info.default or info.Default or 10
+        local min = info.min or info.Min or info.minimum or info.Minimum or 0
+        local max = info.max or info.Max or info.maximum or info.Maximum or 100
+        local maxtext = info.maximumtext or info.Maximumtext or info.maximumText or info.MaximumText or max
+        local sub = info.suffix or info.Suffix or info.ending or info.Ending or info.prefix or info.Prefix or info.measurement or info.Measurement or ""
+        local disable = info.disable or info.Disable or info.disabled or info.disabled or false
+        local decimals = info.decimals or info.Decimals or 1
+        decimals = 1 / decimals
+        local pointer = info.pointer or info.Pointer or info.flag or info.Flag or nil
+        local callback = info.callback or info.callBack or info.Callback or info.CallBack or function()end
+        def = math.clamp(def, min, max)
+        --
+        local window = self.window
+        local page = self.page
+        local section = self
+        --
+        local slider = {min = min, max = max, Disabled = false, sub = sub, decimals = decimals, axis = section.currentAxis, current = -99999, holding = false}
+        --
+ 
+            local Display = Instance.new("TextLabel")
+            local Slider = Instance.new("Frame")
+            local SliderFrame = Instance.new("Frame")
+            local FillBG = Instance.new("Frame")
+            local Trigger = Instance.new("TextButton")
+            local TextLabel = Instance.new("TextLabel")
+	
+    
+            Slider.Name = "Slider"
+            Slider.Parent = section.sectionFrame
+            Slider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Slider.BackgroundTransparency = 2.000
+            Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
+            Slider.BorderSizePixel = 0
+            Slider.Position = UDim2.new(0, 0, 0.976744175, 0)
+            Slider.Size = UDim2.new(0, 220, 0, 28)
+
+            SliderFrame.Name = "SliderFrame"
+            SliderFrame.Parent = Slider
+            SliderFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+            SliderFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+            SliderFrame.BorderSizePixel = 2
+            SliderFrame.Position = UDim2.new(0.118181542, 0, 0.540547907, 4)
+            SliderFrame.Size = UDim2.new(0, 165, 0, 8)
+            library.objects[SliderFrame] = true
+
+            FillBG.Name = "FillBG"
+            FillBG.Parent = SliderFrame
+            FillBG.BackgroundColor3 = Color3.fromRGB(170, 85, 235)
+            FillBG.BorderColor3 = Color3.fromRGB(0, 0, 0)
+            FillBG.BorderSizePixel = 0
+            FillBG.Size = UDim2.new(0, 0, 0, 8)
+            library.objects[FillBG] = true
+	    slider.FillBG = FillBG
+
+            TextLabel.Parent = Slider
+            TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            TextLabel.BackgroundTransparency = 1.000
+            TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+            TextLabel.BorderSizePixel = 0
+            TextLabel.Position = UDim2.new(0.118181817, 0, 0.0700000003, -5)
+            TextLabel.Size = UDim2.new(0, 124, 0, 22)
+            TextLabel.FontFace = library.font
+            TextLabel.Text = name
+            TextLabel.TextColor3 = Color3.fromRGB(180, 180, 180)
+            TextLabel.TextSize = 9.000
+            TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+            library.objects[TextLabel] = true
+
+            Display.Name = "Display"
+            Display.Parent = FillBG
+            Display.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Display.BackgroundTransparency = 1.000
+            Display.BorderColor3 = Color3.fromRGB(0, 0, 0)
+            Display.BorderSizePixel = 0
+            Display.Position = UDim2.new(1, 0, 0, 6)
+            Display.Size = UDim2.new(0, 0, 1, 0)
+            Display.ZIndex = 100
+            Display.FontFace = library.font
+            Display.Text = "0"
+            Display.TextColor3 = Color3.fromRGB(140, 140, 140)
+            Display.TextSize = 9.000
+            Display.TextStrokeTransparency = 0.730
+            library.objects[Display] = true
+
+            local str = Instance.new("UIStroke",SliderFrame)
+            str.Thickness = 1
+            str.Color = Color3.fromRGB(48,48,48)
+            str.Enabled = true
+            library.objects[str] = true
+
+            Trigger.Name = "Trigger"
+            Trigger.Parent = SliderFrame
+            Trigger.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Trigger.BackgroundTransparency = 1.000
+            Trigger.BorderColor3 = Color3.fromRGB(0, 0, 0)
+            Trigger.BorderSizePixel = 0
+            Trigger.Position = UDim2.new(0, 0, -0.161560059, 0)
+            Trigger.Size = UDim2.new(0, 167, 0, 9)
+            Trigger.Font = Enum.Font.SourceSans
+            Trigger.Text = ""
+            Trigger.TextColor3 = Color3.fromRGB(0, 0, 0)
+            Trigger.TextSize = 14.000
+            slider.Trigger = Trigger
+        --
+        function slider:Set(value)
+            local oldval = slider.current
+            --
+            slider.current = math.clamp(math.round(value * slider.decimals) / slider.decimals, slider.min, slider.max)
+            --
+            if slider.current ~= oldval then
+                local disabledtext = disable and ((slider.current <= disable[2] or slider.current >= disable[3]) and disable[1])
+                local percent = 1 - ((slider.max - slider.current) / (slider.max - slider.min))
+                print(percent)
+                Display.Text = disabledtext or (slider.current..slider.sub) -- "/"..maxtext..slider.sub
+                slider.FillBG.Size = UDim2.new(percent,0,0,8)
+                slider.Disabled = disabledtext ~= nil and disabledtext ~= false
+                callback(slider.current)
+            end
+        end
+        --
+        function slider:Refresh()
+            local mouseLocation = utility:MouseLocation()
+            local percent;
+  
+
+            if (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset <= 1 and (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset >= 0 then
+            slider.FillBG.Size = UDim2.new((mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset,0,0,8)
+            percent = ((mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset)
+            elseif (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset <= 0 then
+            slider.FillBG.Size = UDim2.new(0,0,0,8)
+            percent = 0
+            elseif (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset >= 1 then
+            slider.FillBG.Size = UDim2.new(1,0,0,8)
+            percent = 1
+            end
+
+            warn(percent)
+
+            local value = math.round((slider.min + (slider.max - slider.min) * percent) * slider.decimals) / slider.decimals
+            value = math.clamp(value, slider.min, slider.max)
+            slider:Set(value)
+        end
+        --
+        function slider:Get()
+            return slider.current
+        end
+        --
+        slider:Set(def)
+        --
+	slider.holding = false
+		
+        function activateSlider()
+
+	slider.holding = true
+            while slider.holding do
+                slider:Refresh()
+                task.wait()
+            end
+            
+        end
+        
+        library.began[#library.began + 1] = slider.Trigger.InputBegan:Connect(function(Input)
+            if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
+                activateSlider()
+            end
+        end)
+        --
+        library.ended[#library.ended + 1] = uis.InputEnded:Connect(function(Input)
+            if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
+                slider.holding = false
+            end
+        end)
+
+        if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " and not library.pointers[tostring(pointer)] then
+            library.pointers[tostring(pointer)] = slider
+        end
+        --
+        return slider
     end
 end
 
