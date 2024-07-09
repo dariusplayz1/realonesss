@@ -3167,7 +3167,7 @@ do
                 local percent = 1 - ((slider.max - slider.current) / (slider.max - slider.min))
                 print(percent)
                 Display.Text = disabledtext or (slider.current..slider.sub) -- "/"..maxtext..slider.sub
-                Fill.Size = UDim2.new(percent,0,0,8)
+                Fill.Size = UDim2.new(1 - ((slider.max - slider.current) / (slider.max - slider.min)),0,0,8)
                 slider.Disabled = disabledtext ~= nil and disabledtext ~= false
                 callback(slider.current)
             end
