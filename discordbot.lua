@@ -3004,7 +3004,7 @@ do
         local page = self.page
         local section = self
         --
-        local slider = {min = min, max = max, Disabled = false, sub = sub, decimals = decimals, axis = section.currentAxis, current = -99999, holding = false,Trigger = nil}
+        local slider = {min = min, max = max, Disabled = false, sub = sub, decimals = decimals, axis = section.currentAxis, current = -99999, holding = false,Trigger = nil,Display = nil}
         --
 
         if name then
@@ -3016,7 +3016,7 @@ do
         local TextLabel = Instance.new("TextLabel")
 
         local Display = Instance.new("TextLabel")
-
+	slider.Display = Display
 
             Slider.Name = "Slider"
             Slider.Parent = section.sectionFrame
@@ -3099,8 +3099,8 @@ do
         local SliderFrame = Instance.new("Frame")
         local Fill = Instance.new("Frame")
         local Trigger = Instance.new("TextButton")
-        local TextLabel = Instance.new("TextLabel")
-
+ 	local Display = Instance.new("TextLabel")
+	slider.Display = Display
 
             Slider.Name = "Slider"
             Slider.Parent = section.sectionFrame
@@ -3176,7 +3176,7 @@ do
                 local disabledtext = disable and ((slider.current <= disable[2] or slider.current >= disable[3]) and disable[1])
                 local percent = 1 - ((slider.max - slider.current) / (slider.max - slider.min))
                 print(percent)
-                Display.Text = disabledtext or (slider.current..slider.sub) -- "/"..maxtext..slider.sub
+                slider.Display.Text = disabledtext or (slider.current..slider.sub) -- "/"..maxtext..slider.sub
                 Fill.Size = UDim2.new(percent,0,0,8)
                 slider.Disabled = disabledtext ~= nil and disabledtext ~= false
                 callback(slider.current)
