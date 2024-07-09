@@ -3040,6 +3040,7 @@ do
             FillBG.BorderSizePixel = 0
             FillBG.Size = UDim2.new(0, 0, 0, 8)
             library.objects[FillBG] = true
+	    slider.FillBG = FillBG
 
             TextLabel.Parent = Slider
             TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -3089,7 +3090,7 @@ do
             Trigger.Text = ""
             Trigger.TextColor3 = Color3.fromRGB(0, 0, 0)
             Trigger.TextSize = 14.000
---
+            slider.Trigger = Trigger
         --
         function slider:Set(value)
             local oldval = slider.current
@@ -3101,7 +3102,7 @@ do
                 local percent = 1 - ((slider.max - slider.current) / (slider.max - slider.min))
                 print(percent)
                 Display.Text = disabledtext or (slider.current..slider.sub) -- "/"..maxtext..slider.sub
-                FillBG.Size = UDim2.new(percent,0,0,8)
+                slider.FillBG.Size = UDim2.new(percent,0,0,8)
                 slider.Disabled = disabledtext ~= nil and disabledtext ~= false
                 callback(slider.current)
             end
@@ -3112,14 +3113,14 @@ do
             local percent;
   
 
-            if (mouseLocation.X - Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset <= 1 and (mouseLocation.X - Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset >= 0 then
-            FillBG.Size = UDim2.new((mouseLocation.X - Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset,0,0,8)
-            percent = ((mouseLocation.X - Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset)
-            elseif (mouseLocation.X - Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset <= 0 then
-            FillBG.Size = UDim2.new(0,0,0,8)
+            if (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset <= 1 and (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset >= 0 then
+            slider.FillBG.Size = UDim2.new((mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset,0,0,8)
+            percent = ((mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset)
+            elseif (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset <= 0 then
+            slider.FillBG.Size = UDim2.new(0,0,0,8)
             percent = 0
-            elseif (mouseLocation.X - Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset >= 1 then
-            FillBG.Size = UDim2.new(1,0,0,8)
+            elseif (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset >= 1 then
+            slider.FillBG.Size = UDim2.new(1,0,0,8)
             percent = 1
             end
 
@@ -3148,7 +3149,7 @@ do
             
         end
         
-        library.began[#library.began + 1] = Trigger.InputBegan:Connect(function(Input)
+        library.began[#library.began + 1] = slider.Trigger.InputBegan:Connect(function(Input)
             if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
                 activateSlider()
             end
