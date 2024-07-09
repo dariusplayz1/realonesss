@@ -940,7 +940,7 @@ do
         TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         TextButton.BackgroundTransparency = 1.000
         TextButton.BorderColor3 = Color3.fromRGB(41, 41, 41)
-        TextButton.Size = UDim2.new(0, 85, 0, 30)
+        TextButton.Size = UDim2.new(0, 100, 0, 30)
         TextButton.FontFace = library.font
         TextButton.Text = name
         TextButton.TextColor3 = Color3.fromRGB(140, 140, 140)
