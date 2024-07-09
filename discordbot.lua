@@ -3013,9 +3013,7 @@ do
             local FillBG = Instance.new("Frame")
             local Trigger = Instance.new("TextButton")
             local TextLabel = Instance.new("TextLabel")
-		
-        if name then
-        
+	
     
             Slider.Name = "Slider"
             Slider.Parent = section.sectionFrame
@@ -3078,60 +3076,6 @@ do
             str.Color = Color3.fromRGB(48,48,48)
             str.Enabled = true
             library.objects[str] = true
-
-
-        --
-        else
-           
-            Slider.Name = "Slider"
-            Slider.Parent = section.sectionFrame
-            Slider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            Slider.BackgroundTransparency = 2.000
-            Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
-            Slider.BorderSizePixel = 0
-            Slider.Position = UDim2.new(0, 0, 1.19534886, 0)
-            Slider.Size = UDim2.new(0, 220, 0, 16)
-
-            SliderFrame.Name = "SliderFrame"
-            SliderFrame.Parent = Slider
-            SliderFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-            SliderFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
-            SliderFrame.BorderSizePixel = 2
-            SliderFrame.Position = UDim2.new(0.118181542, 0, 0.400000006, 0)
-            SliderFrame.Size = UDim2.new(0, 165, 0, 8)
-            library.objects[SliderFrame] = true
-
-            FillBG.Name = "FillBG"
-            FillBG.Parent = SliderFrame
-            FillBG.BackgroundColor3 = Color3.fromRGB(170, 85, 235)
-            FillBG.BorderColor3 = Color3.fromRGB(0, 0, 0)
-            FillBG.BorderSizePixel = 0
-            FillBG.Size = UDim2.new(0, 0, 0, 8)
-           library.objects[FillBG] = true
-
-            Display.Name = "Display"
-            Display.Parent = FillBG
-            Display.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            Display.BackgroundTransparency = 1.000
-            Display.BorderColor3 = Color3.fromRGB(0, 0, 0)
-            Display.BorderSizePixel = 0
-            Display.Position = UDim2.new(1, 0, 0, 6)
-            Display.Size = UDim2.new(0, 0, 1, 0)
-            Display.ZIndex = 100
-            Display.FontFace = library.font
-            Display.Text = "0"
-            Display.TextColor3 = Color3.fromRGB(140, 140, 140)
-            Display.TextSize = 9.000
-            Display.TextStrokeTransparency = 0.730
-            library.objects[Display] = true
-
-            local str = Instance.new("UIStroke",SliderFrame)
-            str.Thickness = 1
-            str.Color = Color3.fromRGB(48,48,48)
-            str.Enabled = true
-             library.objects[str] = true
-        --
-        end
 
             Trigger.Name = "Trigger"
             Trigger.Parent = SliderFrame
