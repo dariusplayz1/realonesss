@@ -3008,14 +3008,15 @@ do
         --
  
         local Display = Instance.new("TextLabel")
-
-        if name then
-             
-            local Slider = Instance.new("Frame")
+         local Slider = Instance.new("Frame")
             local SliderFrame = Instance.new("Frame")
             local Fill = Instance.new("Frame")
             local Trigger = Instance.new("TextButton")
             local TextLabel = Instance.new("TextLabel")
+		
+        if name then
+             
+   
     
             Slider.Name = "Slider"
             Slider.Parent = section.sectionFrame
@@ -3167,7 +3168,7 @@ do
                 local percent = 1 - ((slider.max - slider.current) / (slider.max - slider.min))
                 print(percent)
                 Display.Text = disabledtext or (slider.current..slider.sub) -- "/"..maxtext..slider.sub
-                Fill.Size = UDim2.new(1 - ((slider.max - slider.current) / (slider.max - slider.min)),0,0,8)
+                Fill.Size = UDim2.new(percent,0,0,8)
                 slider.Disabled = disabledtext ~= nil and disabledtext ~= false
                 callback(slider.current)
             end
