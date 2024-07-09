@@ -3203,9 +3203,14 @@ do
         --
         slider:Set(def)
         --
+
+	local sliderActive = false
+
         function activateSlider()
-	
-            while slider.holding do
+
+	sliderActive = true
+
+            while sliderActive do
                 slider:Refresh()
                 task.wait()
             end
@@ -3223,6 +3228,7 @@ do
         library.ended[#library.ended + 1] = uis.InputEnded:Connect(function(Input)
             if Input.UserInputType == Enum.UserInputType.MouseButton1 and slider.holding and not window.isVisible then
                 slider.holding = false
+                 sliderActive = false
             end
         end)
         --
