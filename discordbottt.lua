@@ -3007,16 +3007,17 @@ do
         local slider = {min = min, max = max, Disabled = false, sub = sub, decimals = decimals, axis = section.currentAxis, current = -99999, holding = false,Trigger = nil,Display = nil}
         --
 
-        if name then
-
-        local Slider = Instance.new("Frame")
+	  local Slider = Instance.new("Frame")
         local SliderFrame = Instance.new("Frame")
         local Fill = Instance.new("Frame")
         local Trigger = Instance.new("TextButton")
         local TextLabel = Instance.new("TextLabel")
+ 	local Display = Instance.new("TextLabel")
 
-        local Display = Instance.new("TextLabel")
-	slider.Display = Display
+        if name then
+
+      
+       
 
             Slider.Name = "Slider"
             Slider.Parent = section.sectionFrame
@@ -3087,6 +3088,7 @@ do
             Display.TextSize = 9.000
             Display.TextStrokeTransparency = 0.730
             library.objects[Display] = true
+slider.Display = Display
 
             local str = Instance.new("UIStroke",SliderFrame)
             str.Thickness = 1
@@ -3095,12 +3097,7 @@ do
             library.objects[str] = true
         else
 
-        local Slider = Instance.new("Frame")
-        local SliderFrame = Instance.new("Frame")
-        local Fill = Instance.new("Frame")
-        local Trigger = Instance.new("TextButton")
- 	local Display = Instance.new("TextLabel")
-	slider.Display = Display
+	
 
             Slider.Name = "Slider"
             Slider.Parent = section.sectionFrame
@@ -3158,6 +3155,7 @@ do
             Display.TextSize = 9.000
             Display.TextStrokeTransparency = 0.730
             library.objects[Display] = true
+slider.Display = Display
 
             local str = Instance.new("UIStroke",SliderFrame)
             str.Thickness = 1
