@@ -2033,7 +2033,8 @@ do
             return toggle.current
         end
         --
-        function toggle:Set(bool)
+              function toggle:Set(bool)
+            if toggle then
             if typeof(bool) == "boolean" then
                 toggle.current = bool
                  UIGradient.Color = toggle.current == true and ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(141, 73, 192)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(56, 40, 68))} or ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(47,47,47)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(22,22,22))}
@@ -2074,7 +2075,7 @@ do
                 end
             end
         end
-
+        end
         library.began[#library.began + 1] = ActualButton.InputBegan:Connect(function(Input)
 
             if Input.UserInputType == Enum.UserInputType.MouseButton1 then
