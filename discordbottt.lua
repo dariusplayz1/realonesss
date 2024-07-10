@@ -2078,7 +2078,7 @@ do
 
         --// toggle addons
 
-            function toggle:Colorpicker(info)
+                function toggle:Colorpicker(info)
 
             local info = info or {}
             local cpinfo = info.info or info.Info or name
@@ -2092,8 +2092,6 @@ do
             local colorpicker = {toggle, axis = toggle.axis, index = toggle.colorpickers, current = {hh, ss, vv , (transp or 0)}, holding = {picker = false, huepicker = false, transparency = false}, holder = {inline = nil, picker = nil, picker_cursor = nil, huepicker = nil, huepicker_cursor = {}, transparency = nil, transparencybg = nil,inFrame = false, transparency_cursor = {}, drawings = {}}}
             --
             local toggle = self
-
-            local ColorPicker = Instance.new("Frame")
             local UIGradient = Instance.new("UIGradient")
             local TextLabel = Instance.new("TextLabel")
             local valsat = Instance.new("ImageLabel")
@@ -2108,7 +2106,7 @@ do
             local ImageLabel = Instance.new("ImageLabel")
             local UIGradient_2 = Instance.new("UIGradient")
             local Trigger_3 = Instance.new("TextButton")
-            
+    
             local ColorButton = Instance.new("ImageButton")
             local UIGradient = Instance.new("UIGradient")
             
@@ -2251,12 +2249,14 @@ do
                         colorpicker.open = not colorpicker.open
                         
 
+                        local ColorPicker = Instance.new("Frame")
                         
+            
 
                         --Properties:
 
                         ColorPicker.Name = "ColorPicker"
-		        if ColorPicker and ColorPicker.Parent and not ColorPicker.Parent == ColorButton then ColorPicker.Parent = ColorButton end
+                        ColorPicker.Parent = ColorButton
                         ColorPicker.BackgroundColor3 = Color3.fromRGB(19, 19, 19)
                         ColorPicker.BorderColor3 = Color3.fromRGB(12, 12, 12)
                         ColorPicker.BorderSizePixel = 2
