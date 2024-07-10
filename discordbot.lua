@@ -3820,9 +3820,8 @@ do
         --
         return multibox
     end
-   function sections:Slider(info)
-        --
-        local info = info or {}
+    function sections:Slider(info)
+        --local info = info or {}
         local name = info.name or info.Name or info.title or info.Title
         local def = info.def or info.Def or info.default or info.Default or 10
         local min = info.min or info.Min or info.minimum or info.Minimum or 0
@@ -3840,16 +3839,20 @@ do
         local page = self.page
         local section = self
         --
-        local sliderrr = {min = min, max = max, Disabled = false, sub = sub, decimals = decimals, axis = section.currentAxis, current = -99999, holding = false}
+        local slider = {min = min, max = max, Disabled = false, sub = sub, decimals = decimals, axis = section.currentAxis, current = -99999, holding = false}
         --
- 	do
+        if name then
+       
+
+        if name then
+             
             local Display = Instance.new("TextLabel")
             local Slider = Instance.new("Frame")
             local SliderFrame = Instance.new("Frame")
             local Fill = Instance.new("Frame")
             local Trigger = Instance.new("TextButton")
             local TextLabel = Instance.new("TextLabel")
-
+    
             Slider.Name = name
             Slider.Parent = section.sectionFrame
             Slider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -3888,7 +3891,6 @@ do
             Trigger.Text = ""
             Trigger.TextColor3 = Color3.fromRGB(0, 0, 0)
             Trigger.TextSize = 14.000
-	    sliderrr.Trigger = Trigger
 
             TextLabel.Parent = Slider
             TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -3919,94 +3921,95 @@ do
             Display.TextSize = 9.000
             Display.TextStrokeTransparency = 0.730
             library.objects[Display] = true
-	    sliderrr.Display = Display
 
             local str = Instance.new("UIStroke",SliderFrame)
             str.Thickness = 1
             str.Color = Color3.fromRGB(48,48,48)
             str.Enabled = true
             library.objects[str] = true
-      
-        --
-        function sliderrr:Set(value)
-            local oldval = sliderrr.current
+
             --
-            sliderrr.current = math.clamp(math.round(value * sliderrr.decimals) / sliderrr.decimals, sliderrr.min, sliderrr.max)
+            function slider:Set(value)
+                local oldval = slider.current
+                --
+                slider.current = math.clamp(math.round(value * slider.decimals) / slider.decimals, slider.min, slider.max)
+                --
+                if slider.current ~= oldval then
+                    local disabledtext = disable and ((slider.current <= disable[2] or slider.current >= disable[3]) and disable[1])
+                    local percent = 1 - ((slider.max - slider.current) / (slider.max - slider.min))
+                    print(percent)
+                    Display.Text = disabledtext or (slider.current..slider.sub) -- "/"..maxtext..slider.sub
+                    Fill.Size = UDim2.new(percent,0,0,8)
+                    slider.Disabled = disabledtext ~= nil and disabledtext ~= false
+                    callback(slider.current)
+                end
+            end
             --
-            if sliderrr.current ~= oldval then
-                local disabledtext = disable and ((sliderrr.current <= disable[2] or sliderrr.current >= disable[3]) and disable[1])
-                local percent = 1 - ((sliderrr.max - sliderrr.current) / (sliderrr.max - sliderrr.min))
-       		
-                sliderrr.Display.Text = disabledtext or (sliderrr.current..sliderrr.sub) -- "/"..maxtext..slider.sub
-                Fill.Size = UDim2.new(percent,0,0,8)
-                sliderrr.Disabled = disabledtext ~= nil and disabledtext ~= false
-                callback(sliderrr.current)
+            function slider:Refresh()
+                local mouseLocation = utility:MouseLocation()
+                local percent;
+
+
+                if (mouseLocation.X - Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset <= 1 and (mouseLocation.X - Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset >= 0 then
+                Fill.Size = UDim2.new((mouseLocation.X - Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset,0,0,8)
+                percent = ((mouseLocation.X - Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset)
+                elseif (mouseLocation.X - Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset <= 0 then
+                Fill.Size = UDim2.new(0,0,0,8)
+                percent = 0
+                elseif (mouseLocation.X - Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset >= 1 then
+                Fill.Size = UDim2.new(1,0,0,8)
+                percent = 1
+                end
+
+                warn(percent)
+
+                local value = math.round((slider.min + (slider.max - slider.min) * percent) * slider.decimals) / slider.decimals
+                value = math.clamp(value, slider.min, slider.max)
+                slider:Set(value)
             end
-        end
-        --
-        function sliderrr:Refresh()
-            local mouseLocation = utility:MouseLocation()
-            local percent;
-
-	print(sliderrr.Display.Text)
-
-            if (mouseLocation.X - sliderrr.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset <= 1 and (mouseLocation.X - sliderrr.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset >= 0 then
-            Fill.Size = UDim2.new((mouseLocation.X - sliderrr.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset,0,0,8)
-            percent = ((mouseLocation.X - sliderrr.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset)
-            elseif (mouseLocation.X - sliderrr.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset <= 0 then
-            Fill.Size = UDim2.new(0,0,0,8)
-            percent = 0
-            elseif (mouseLocation.X - sliderrr.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset >= 1 then
-            Fill.Size = UDim2.new(1,0,0,8)
-            percent = 1
+            --
+            function slider:Get()
+                return slider.current
             end
-
-            local value = math.round((sliderrr.min + (sliderrr.max - sliderrr.min) * percent) * sliderrr.decimals) / sliderrr.decimals
-            value = math.clamp(value, sliderrr.min, sliderrr.max)
-            sliderrr:Set(value)
-        end
-        --
-        function sliderrr:Get()
-            return sliderrr.current
-        end
-        --
-        sliderrr:Set(def)
-        --
-	local activated = false
-
-
-	end
-        function activateSlider()
-
-	   activated = true
-            while activated do
-                sliderrr:Refresh()
-                task.wait()
-            end
-            
-        end
-        --
-        library.began[#library.began + 1] = sliderrr.Trigger.InputBegan:Connect(function(Input)
-            if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
-                sliderrr.holding = true
-                activateSlider()
-            end
-        end)
-        --
-        library.ended[#library.ended + 1] = uis.InputEnded:Connect(function(Input)
-            if Input.UserInputType == Enum.UserInputType.MouseButton1 and sliderrr.holding and not window.isVisible then
-                sliderrr.holding = false
-		activated = false
-            end
-        end)
-        --
+              --
+            slider:Set(def)
+             
+            --
+            function activateSlider()
         
+                while slider.holding do
+                    slider:Refresh()
+                    task.wait()
+                end
+                
+            end
+            --
+            library.began[#library.began + 1] = Trigger.InputBegan:Connect(function(Input)
+                if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
+                    slider.holding = true
+                    activateSlider()
+                end
+            end)
+            --
+            library.ended[#library.ended + 1] = uis.InputEnded:Connect(function(Input)
+                if Input.UserInputType == Enum.UserInputType.MouseButton1 and slider.holding and not window.isVisible then
+                    slider.holding = false
+                end
+            end)
+            --  
+
+        else
+           
+            print("cannot create slider, argument not found: Name")
+        end
+
+
         --
         if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " and not library.pointers[tostring(pointer)] then
-            library.pointers[tostring(pointer)] = sliderrr
+            library.pointers[tostring(pointer)] = slider
         end
         --
-        return sliderrr
+        return slider
     end
 
 end
