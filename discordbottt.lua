@@ -1,4 +1,4 @@
---[[
+z--[[
   Private library owned by dadu
   last modified: 10/07/2024
   
@@ -3944,7 +3944,8 @@ do
             end
             --
             function slider:Refresh(Trigger,Fill,Slider)
-                local mouseLocation = utility:MouseLocation()
+               if Trigger.Parent == Fill then
+		local mouseLocation = utility:MouseLocation()
                 local percent;
 
 		
@@ -3964,6 +3965,7 @@ do
                 local value = math.round((slider.min + (slider.max - slider.min) * percent) * slider.decimals) / slider.decimals
                 value = math.clamp(value, slider.min, slider.max)
                 slider:Set(value)
+		end
             end
             --
             function slider:Get()
