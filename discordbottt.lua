@@ -3924,6 +3924,8 @@ do
             Display.TextStrokeTransparency = 0.730
             library.objects[Display] = true
 
+	section.sectionFrame.Size = UDim2.new(0, 230, 0, section.UIListLayout.AbsoluteContentSize.Y + 7)
+			
             local str = Instance.new("UIStroke",SliderFrame)
             str.Thickness = 1
             str.Color = Color3.fromRGB(48,48,48)
@@ -4084,7 +4086,7 @@ do
             str.Enabled = true
              library.objects[str] = true
 
-    
+            section.sectionFrame.Size = UDim2.new(0, 230, 0, section.UIListLayout.AbsoluteContentSize.Y + 7)
             --
             function slider:Set(value)
                 local oldval = slider.current
@@ -4167,7 +4169,7 @@ local slideractive = false
         --
         return slider
         end
-        section.sectionFrame.Size = UDim2.new(0, 230, 0, section.UIListLayout.AbsoluteContentSize.Y + 7)
+        
     end
 
 end
