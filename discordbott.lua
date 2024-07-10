@@ -2256,7 +2256,7 @@ do
                         --Properties:
 
                         ColorPicker.Name = "ColorPicker"
-                        ColorPicker.Parent = ColorButton
+		        if ColorPicker and ColorPicker.Parent and not ColorPicker.Parent == ColorButton then ColorPicker.Parent = ColorButton end
                         ColorPicker.BackgroundColor3 = Color3.fromRGB(19, 19, 19)
                         ColorPicker.BorderColor3 = Color3.fromRGB(12, 12, 12)
                         ColorPicker.BorderSizePixel = 2
