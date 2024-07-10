@@ -3821,7 +3821,7 @@ do
         return multibox
     end
     function sections:Slider(info)
-        --local info = info or {}
+        local info = info or {}
         local name = info.name or info.Name or info.title or info.Title
         local def = info.def or info.Def or info.default or info.Default or 10
         local min = info.min or info.Min or info.minimum or info.Minimum or 0
@@ -4013,5 +4013,3 @@ do
     end
 
 end
-
-return library, utility, library.pointers
