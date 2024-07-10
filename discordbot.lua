@@ -2648,6 +2648,7 @@ do
                         keybind.current = inputTable
                         keybindbutton.Text = "[None]"
                             end
+			 print(keybind.current)
                             --
                             return true
                         end
