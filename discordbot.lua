@@ -2098,7 +2098,7 @@ do
 
         --// toggle addons
 
-         function toggle:Colorpicker(info)
+            function toggle:Colorpicker(info)
 
             local info = info or {}
             local cpinfo = info.info or info.Info or name
@@ -2113,6 +2113,21 @@ do
             --
             local toggle = self
 
+            local ColorPicker = Instance.new("Frame")
+            local UIGradient = Instance.new("UIGradient")
+            local TextLabel = Instance.new("TextLabel")
+            local valsat = Instance.new("ImageLabel")
+            local dot = Instance.new("Frame")
+            local UICorner = Instance.new("UICorner")
+            local Trigger = Instance.new("TextButton")
+            local colorhue = Instance.new("ImageLabel")
+            local color = Instance.new("Frame")
+            local Trigger_2 = Instance.new("TextButton")
+            local transval = Instance.new("ImageLabel")
+            local trans = Instance.new("Frame")
+            local ImageLabel = Instance.new("ImageLabel")
+            local UIGradient_2 = Instance.new("UIGradient")
+            local Trigger_3 = Instance.new("TextButton")
             
             local ColorButton = Instance.new("ImageButton")
             local UIGradient = Instance.new("UIGradient")
@@ -2255,21 +2270,7 @@ do
                         window:CloseContent()
                         colorpicker.open = not colorpicker.open
                         
-                        local ColorPicker = Instance.new("Frame")
-                        local UIGradient = Instance.new("UIGradient")
-                        local TextLabel = Instance.new("TextLabel")
-                        local valsat = Instance.new("ImageLabel")
-                        local dot = Instance.new("Frame")
-                        local UICorner = Instance.new("UICorner")
-                        local Trigger = Instance.new("TextButton")
-                        local colorhue = Instance.new("ImageLabel")
-                        local color = Instance.new("Frame")
-                        local Trigger_2 = Instance.new("TextButton")
-                        local transval = Instance.new("ImageLabel")
-                        local trans = Instance.new("Frame")
-                        local ImageLabel = Instance.new("ImageLabel")
-                        local UIGradient_2 = Instance.new("UIGradient")
-                        local Trigger_3 = Instance.new("TextButton")
+
                         
 
                         --Properties:
