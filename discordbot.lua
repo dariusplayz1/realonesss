@@ -1638,7 +1638,7 @@ do
         end
 
         --
-        for i=1, #list.max do
+        for i=1, list.max do
             
             local value1 = Instance.new("TextButton")
 
