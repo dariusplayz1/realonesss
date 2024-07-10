@@ -3923,7 +3923,7 @@ do
             Display.TextSize = 9.000
             Display.TextStrokeTransparency = 0.730
             library.objects[Display] = true
-		 section.sectionFrame.Size = UDim2.new(0, 230, 0, section.UIListLayout.AbsoluteContentSize.Y + 15)
+		 section.sectionFrame.Size = UDim2.new(0, 230, 0, section.UIListLayout.AbsoluteContentSize.Y + 11)
 	
             local str = Instance.new("UIStroke",SliderFrame)
             str.Thickness = 1
@@ -4037,7 +4037,7 @@ do
             SliderFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
             SliderFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
             SliderFrame.BorderSizePixel = 2
-            SliderFrame.Position = UDim2.new(0.118181542, 0, 0.400000006, 0)
+            SliderFrame.Position = UDim2.new(0.118181542, 0, 0.400000006, -1)
             SliderFrame.Size = UDim2.new(0, 165, 0, 8)
             library.objects[SliderFrame] = true
 
@@ -4078,7 +4078,7 @@ do
             Display.TextSize = 9.000
             Display.TextStrokeTransparency = 0.730
             library.objects[Display] = true
- section.sectionFrame.Size = UDim2.new(0, 230, 0, section.UIListLayout.AbsoluteContentSize.Y + 15)
+ section.sectionFrame.Size = UDim2.new(0, 230, 0, section.UIListLayout.AbsoluteContentSize.Y + 11)
 	
             local str = Instance.new("UIStroke",SliderFrame)
             str.Thickness = 1
