@@ -3997,6 +3997,7 @@ do
             library.pointers[tostring(pointer)] = slider
         end
         --
+	print(slider)
         return slider
     end
 end
