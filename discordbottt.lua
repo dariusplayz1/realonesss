@@ -199,7 +199,8 @@ do
             --
             if String == "Unknown" or Input.Value == 27 then
                 return "None"
-            elseif utility.Keyboard.InputNames[String] then
+	    end
+            if utility.Keyboard.InputNames[String] then
                 String = utility.Keyboard.InputNames[String]
             end
             --
