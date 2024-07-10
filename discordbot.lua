@@ -3914,7 +3914,7 @@ do
             Display.BackgroundTransparency = 1.000
             Display.BorderColor3 = Color3.fromRGB(0, 0, 0)
             Display.BorderSizePixel = 0
-            Display.Position = UDim2.new(1, 0, 0, 6)
+            Display.Position = UDim2.new(1, 0, 0, 4)
             Display.Size = UDim2.new(0, 0, 1, 0)
             Display.ZIndex = 100
             Display.FontFace = library.font
@@ -4069,7 +4069,7 @@ do
             Display.BackgroundTransparency = 1.000
             Display.BorderColor3 = Color3.fromRGB(0, 0, 0)
             Display.BorderSizePixel = 0
-            Display.Position = UDim2.new(1, 0, 0, 6)
+            Display.Position = UDim2.new(1, 0, 0, 4)
             Display.Size = UDim2.new(0, 0, 1, 0)
             Display.ZIndex = 100
             Display.FontFace = library.font
