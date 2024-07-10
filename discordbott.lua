@@ -2648,12 +2648,13 @@ do
                         keybind.current = inputTable
                         keybindbutton.Text = "[None]"
                             end
-			 print(keybind.current)
+		
                             --
                             return true
                         end
                     end
                 end
+	 	print(keybind.current[1],keybind.current[2])
                 --
                 return false
             end
@@ -3938,7 +3939,7 @@ do
                 if slider.current ~= oldval then
                     local disabledtext = disable and ((slider.current <= disable[2] or slider.current >= disable[3]) and disable[1])
                     local percent = 1 - ((slider.max - slider.current) / (slider.max - slider.min))
-                    print(percent)
+                    
                     Display.Text = disabledtext or (slider.current..slider.sub) -- "/"..maxtext..slider.sub
                     Fill.Size = UDim2.new(percent,0,0,8)
                     slider.Disabled = disabledtext ~= nil and disabledtext ~= false
