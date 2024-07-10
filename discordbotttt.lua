@@ -1642,7 +1642,7 @@ do
             
             local value1 = Instance.new("TextButton")
 
-            value1.Name = list.options[i]
+            value1.Name = list.options[i] or ""
             value1.Parent = ListFrame
             value1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             value1.BackgroundTransparency = 1.000
@@ -1650,7 +1650,7 @@ do
             value1.BorderSizePixel = 0
             value1.Size = UDim2.new(0, 167, 0, 19)
             value1.FontFace = library.font
-            value1.Text = list.options[i]
+            value1.Text = list.options[i] or ""
             value1.TextColor3 = i == 1 and Color3.fromRGB(170, 85, 235) or Color3.fromRGB(180,180,180)
             library.objects[value1] = true
             value1.TextSize = 9.000
