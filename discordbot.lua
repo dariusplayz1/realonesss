@@ -4009,5 +4009,6 @@ do
         --
         return slider
     end
-
 end
+
+return library, utility, library.pointers, theme
