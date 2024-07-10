@@ -3943,7 +3943,7 @@ do
                 end
             end
             --
-            function slider:Refresh()
+            function slider:Refresh(Trigger,Fill,Slider)
                 local mouseLocation = utility:MouseLocation()
                 local percent;
 
@@ -3975,11 +3975,11 @@ do
             --
 	    local randombool = false
 
-            function activateSlider()
+            function activateSlider(Trigger,Fill,Slider)
 
 		randombool = true
                 while randombool do
-                    slider:Refresh()
+                    slider:Refresh(Trigger,Fill,Slider)
                     task.wait()
                 end
                 
@@ -3989,7 +3989,7 @@ do
                 if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
                     slider.holding = true
 		print(Trigger.Name)
-                    activateSlider()
+                    activateSlider(Trigger,Trigger.Parent.Fill,Trigger.Parent)
                 end
             end)
             --
