@@ -1732,6 +1732,10 @@ do
         TriggerButton.TextSize = 9.000
         library.objects[TriggerButton] = true
 
+	function button:Set()
+  	 callback()
+	end
+		
         TriggerButton.Text = name
 
         TriggerButton.MouseEnter:Connect(function()
@@ -1750,7 +1754,7 @@ do
 
             if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
 
-                callback()
+             button:Set()
 
             end
 
@@ -1758,9 +1762,8 @@ do
 
         section.sectionFrame.Size = UDim2.new(0, 230, 0, section.UIListLayout.AbsoluteContentSize.Y + 7)
         --
-	function button:Set()
-
-	end
+	
+		
         if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " and not library.pointers[tostring(pointer)] then
             library.pointers[tostring(pointer)] = button
         end
@@ -1843,7 +1846,7 @@ do
 
                     if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
         
-                        buttons[1][2]()
+                        buttons[1][2]:Set()
         
                     end
         
@@ -1901,7 +1904,7 @@ do
 
                     if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
         
-                        buttons[2][2]()
+                        buttons[2][2]:Set()
         
                     end
         
