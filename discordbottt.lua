@@ -3820,7 +3820,7 @@ do
         --
         return multibox
     end
-    function sections:Slider(info)
+       function sections:Slider(info)
         local info = info or {}
         local name = info.name or info.Name or info.title or info.Title
         local def = info.def or info.Def or info.default or info.Default or 10
@@ -3848,7 +3848,7 @@ do
             local Slider = Instance.new("Frame")
             local SliderFrame = Instance.new("Frame")
             local Fill = Instance.new("Frame")
-            local Trigger = Instance.new("TextButton")
+            local Triggerrr = Instance.new("TextButton")
             local TextLabel = Instance.new("TextLabel")
     
             Slider.Name = name
@@ -3877,18 +3877,18 @@ do
             Fill.Size = UDim2.new(0, 0, 0, 8)
             library.objects[Fill] = true
 
-            Trigger.Name = name
-            Trigger.Parent = SliderFrame
-            Trigger.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            Trigger.BackgroundTransparency = 1.000
-            Trigger.BorderColor3 = Color3.fromRGB(0, 0, 0)
-            Trigger.BorderSizePixel = 0
-            Trigger.Position = UDim2.new(0, 0, -0.161560059, 0)
-            Trigger.Size = UDim2.new(0, 167, 0, 9)
-            Trigger.Font = Enum.Font.SourceSans
-            Trigger.Text = ""
-            Trigger.TextColor3 = Color3.fromRGB(0, 0, 0)
-            Trigger.TextSize = 14.000
+            Triggerrr.Name = name.."Triggerrr"
+            Triggerrr.Parent = SliderFrame
+            Triggerrr.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Triggerrr.BackgroundTransparency = 1.000
+            Triggerrr.BorderColor3 = Color3.fromRGB(0, 0, 0)
+            Triggerrr.BorderSizePixel = 0
+            Triggerrr.Position = UDim2.new(0, 0, -0.161560059, 0)
+            Triggerrr.Size = UDim2.new(0, 167, 0, 9)
+            Triggerrr.Font = Enum.Font.SourceSans
+            Triggerrr.Text = ""
+            Triggerrr.TextColor3 = Color3.fromRGB(0, 0, 0)
+            Triggerrr.TextSize = 14.000
 
             TextLabel.Parent = Slider
             TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -3943,29 +3943,27 @@ do
                 end
             end
             --
-            function slider:Refresh(Trigger,Fill,Slider)
-               if Trigger.Parent == Fill then
-		local mouseLocation = utility:MouseLocation()
+            function slider:Refresh()
+                local mouseLocation = utility:MouseLocation()
                 local percent;
 
-		
 
-                if (mouseLocation.X - Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset <= 1 and (mouseLocation.X - Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset >= 0 then
-                Fill.Size = UDim2.new((mouseLocation.X - Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset,0,0,8)
-                percent = ((mouseLocation.X - Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset)
-                elseif (mouseLocation.X - Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset <= 0 then
+                if (mouseLocation.X - Triggerrr.AbsolutePosition.X) / SliderFrame.Size.X.Offset <= 1 and (mouseLocation.X - Triggerrr.AbsolutePosition.X) / SliderFrame.Size.X.Offset >= 0 then
+                Fill.Size = UDim2.new((mouseLocation.X - Triggerrr.AbsolutePosition.X) / SliderFrame.Size.X.Offset,0,0,8)
+                percent = ((mouseLocation.X - Triggerrr.AbsolutePosition.X) / SliderFrame.Size.X.Offset)
+                elseif (mouseLocation.X - Triggerrr.AbsolutePosition.X) / SliderFrame.Size.X.Offset <= 0 then
                 Fill.Size = UDim2.new(0,0,0,8)
                 percent = 0
-                elseif (mouseLocation.X - Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset >= 1 then
+                elseif (mouseLocation.X - Triggerrr.AbsolutePosition.X) / SliderFrame.Size.X.Offset >= 1 then
                 Fill.Size = UDim2.new(1,0,0,8)
                 percent = 1
                 end
 
+                warn(percent)
 
                 local value = math.round((slider.min + (slider.max - slider.min) * percent) * slider.decimals) / slider.decimals
                 value = math.clamp(value, slider.min, slider.max)
                 slider:Set(value)
-		end
             end
             --
             function slider:Get()
@@ -3975,46 +3973,47 @@ do
             slider:Set(def)
              
             --
-	    local randombool = false
-
-            function activateSlider(Trigger,Fill,Slider)
-
-		randombool = true
-                while randombool do
-                    slider:Refresh(Trigger,Fill,Slider)
-                    task.wait()
-                end
-                
-            end
+         
             --
-            library.began[#library.began + 1] = Trigger.InputBegan:Connect(function(Input)
+            library.began[#library.began + 1] = Triggerrr.InputBegan:Connect(function(Input)
                 if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
                     slider.holding = true
-		print(Trigger.Name)
-                    activateSlider(Trigger,Trigger.Parent.Fill,Trigger.Parent)
+
+                    function activateSlider()
+        
+                        while slider.holding do
+                       
+                            task.wait()
+                            slider:Refresh()
+                        end
+                        
+                    end
+                   
+                    activateSlider()
                 end
             end)
             --
             library.ended[#library.ended + 1] = uis.InputEnded:Connect(function(Input)
-                if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
+                if Input.UserInputType == Enum.UserInputType.MouseButton1 and slider.holding and not window.isVisible then
                     slider.holding = false
-		    randombool = false
                 end
             end)
             --  
 
+              --
+        if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " and not library.pointers[tostring(pointer)] then
+            library.pointers[tostring(pointer)] = slider
+        end
+        --
+        return slider
+        
         else
            
             print("cannot create slider, argument not found: Name")
         end
 
 
-        --
-        if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " and not library.pointers[tostring(pointer)] then
-            library.pointers[tostring(pointer)] = slider
-        end
-        --
-        return slider
+      
     end
 end
 
