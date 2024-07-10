@@ -3893,7 +3893,7 @@ do
             Trigger.Text = ""
             Trigger.TextColor3 = Color3.fromRGB(0, 0, 0)
             Trigger.TextSize = 14.000
-	    slider.Trigger = Trigger
+	    sliderrr.Trigger = Trigger
 
             TextLabel.Parent = Slider
             TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -3924,7 +3924,7 @@ do
             Display.TextSize = 9.000
             Display.TextStrokeTransparency = 0.730
             library.objects[Display] = true
-	    slider.Display = Display
+	    sliderrr.Display = Display
 
             local str = Instance.new("UIStroke",SliderFrame)
             str.Thickness = 1
@@ -3971,7 +3971,7 @@ do
             Trigger.Text = ""
             Trigger.TextColor3 = Color3.fromRGB(0, 0, 0)
             Trigger.TextSize = 14.000
-            slider.Trigger = Trigger
+            sliderrr.Trigger = Trigger
 
             Display.Name = "Display"
             Display.Name = "Display"
@@ -3989,7 +3989,7 @@ do
             Display.TextSize = 9.000
             Display.TextStrokeTransparency = 0.730
             library.objects[Display] = true
-	    slider.Display = Display
+	    sliderrr.Display = Display
 
             local str = Instance.new("UIStroke",SliderFrame)
             str.Thickness = 1
