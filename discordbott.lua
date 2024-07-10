@@ -1659,7 +1659,7 @@ do
         function list:Refresh()
             for Index, Value in pairs(list.buttons) do
                 Value.Text = list.options[Index] or ""
-                Value.Color = Inde == list.current and Color3.fromRGB(170, 85, 235) or Color3.fromRGB(180, 180, 180)
+                Value.TextColor3 = Inde == list.current and Color3.fromRGB(170, 85, 235) or Color3.fromRGB(180, 180, 180)
                
             end
         end
