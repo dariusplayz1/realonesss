@@ -3947,7 +3947,7 @@ do
   
 
             if (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / slider.SliderFrame.Size.X.Offset <= 1 and (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / slider.SliderFrame.Size.X.Offset >= 0 then
-            slider.FillBG.Size = UDim2.new((mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset,0,0,8)
+            slider.FillBG.Size = UDim2.new((mouseLocation.X - slider.Trigger.AbsolutePosition.X) / slider.SliderFrame.Size.X.Offset,0,0,8)
             percent = ((mouseLocation.X - slider.Trigger.AbsolutePosition.X) / slider.SliderFrame.Size.X.Offset)
             elseif (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / slider.SliderFrame.Size.X.Offset <= 0 then
             slider.FillBG.Size = UDim2.new(0,0,0,8)
