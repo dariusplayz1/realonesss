@@ -2078,7 +2078,7 @@ do
 
         --// toggle addons
 
-                function toggle:Colorpicker(info)
+             function toggle:Colorpicker(info)
 
             local info = info or {}
             local cpinfo = info.info or info.Info or name
@@ -2104,7 +2104,7 @@ do
             local transval = Instance.new("ImageLabel")
             local trans = Instance.new("Frame")
             local ImageLabel = Instance.new("ImageLabel")
-            local UIGradient_2 = Instance.new("UIGradient")
+      
             local Trigger_3 = Instance.new("TextButton")
     
             local ColorButton = Instance.new("ImageButton")
@@ -2250,7 +2250,7 @@ do
                         
 
                         local ColorPicker = Instance.new("Frame")
-                        
+                        local UIGradient_2 = Instance.new("UIGradient")
             
 
                         --Properties:
