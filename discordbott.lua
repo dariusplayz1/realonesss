@@ -1634,15 +1634,15 @@ do
         end
        --
        function list:Get()
-           return list.options[list.current]
+            return list.options[list.current]
         end
 
         --
-        for i=1, #options do
+        for i=1, #list.max do
             
             local value1 = Instance.new("TextButton")
 
-            value1.Name = options[i]
+            value1.Name = list.options[i]
             value1.Parent = ListFrame
             value1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             value1.BackgroundTransparency = 1.000
@@ -1650,35 +1650,34 @@ do
             value1.BorderSizePixel = 0
             value1.Size = UDim2.new(0, 167, 0, 19)
             value1.FontFace = library.font
-            value1.Text = options[i]
+            value1.Text = list.options[i]
+            value1.TextColor3 = i == 1 and Color3.fromRGB(170, 85, 235) or Color3.fromRGB(180,180,180)
             library.objects[value1] = true
-
-            if list.current == tostring(options[i]) then
-                value1.TextColor3 = Color3.fromRGB(170, 85, 235)
-            else
-                value1.TextColor3 = Color3.fromRGB(180,180,180)
-            end
-
             value1.TextSize = 9.000
             --
             list.buttons[i] = value1
-            --
+            
             library.began[#library.began + 1] = value1.MouseButton1Click:Connect(function()
-
-                if not window.isVisible then
-
-                    if not value1.Text ~= tostring(list.current) then
-                    
-                        list:Set(value1.Text)
-
-                    end
-        
-                  
+                if not window.isVisible and value1.Text ~= "" then
+                for i=1, list.max do
+             
+                        list.current = list.options[value1.Text]
+                        list:Refresh()
+              
                 end
-
+            end
             end)
 
         end
+
+        function list:Refresh()
+            for Index, Value in pairs(list.buttons) do
+                Value.Text = list.options[Index] or ""
+                Value.Color = Inde == list.current and Color3.fromRGB(170, 85, 235) or Color3.fromRGB(180, 180, 180)
+               
+            end
+        end
+
         --
         if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " and not library.pointers[tostring(pointer)] then
             library.pointers[tostring(pointer)] = list
