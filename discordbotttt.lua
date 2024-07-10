@@ -2092,21 +2092,7 @@ do
             local colorpicker = {toggle, axis = toggle.axis, index = toggle.colorpickers, current = {hh, ss, vv , (transp or 0)}, holding = {picker = false, huepicker = false, transparency = false}, holder = {inline = nil, picker = nil, picker_cursor = nil, huepicker = nil, huepicker_cursor = {}, transparency = nil, transparencybg = nil,inFrame = false, transparency_cursor = {}, drawings = {}}}
             --
             local toggle = self
-            local UIGradient = Instance.new("UIGradient")
-            local TextLabel = Instance.new("TextLabel")
-            local valsat = Instance.new("ImageLabel")
-            local dot = Instance.new("Frame")
-            local UICorner = Instance.new("UICorner")
-            local Trigger = Instance.new("TextButton")
-            local colorhue = Instance.new("ImageLabel")
-            local color = Instance.new("Frame")
-            local Trigger_2 = Instance.new("TextButton")
-            local transval = Instance.new("ImageLabel")
-            local trans = Instance.new("Frame")
-            local ImageLabel = Instance.new("ImageLabel")
-      
-            local Trigger_3 = Instance.new("TextButton")
-    
+  
             local ColorButton = Instance.new("ImageButton")
  
             
