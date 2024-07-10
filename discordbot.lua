@@ -306,7 +306,7 @@ do
         title.BackgroundTransparency = 1.000
         title.BorderColor3 = Color3.fromRGB(0, 0, 0)
         title.BorderSizePixel = 0
-        title.Position = UDim2.new(0.0241699219, 0, 0.00347222225, 4)
+        title.Position = UDim2.new(0.0241699219, 0, 0.00347222225, 2)
         title.Size = UDim2.new(0, 308, 0, 32)
         title.FontFace = library.font
         title.RichText = true
