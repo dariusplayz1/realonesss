@@ -3973,9 +3973,12 @@ do
             slider:Set(def)
              
             --
+	    local randombool = false
+
             function activateSlider()
-        
-                while slider.holding do
+
+		randombool = true
+                while randombool do
                     slider:Refresh()
                     task.wait()
                 end
@@ -3990,8 +3993,9 @@ do
             end)
             --
             library.ended[#library.ended + 1] = uis.InputEnded:Connect(function(Input)
-                if Input.UserInputType == Enum.UserInputType.MouseButton1 and slider.holding and not window.isVisible then
+                if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
                     slider.holding = false
+		    randombool = false
                 end
             end)
             --  
