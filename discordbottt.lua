@@ -4132,26 +4132,30 @@ do
             slider:Set(def)
              
             --
+local slideractive = false
+   
+            --
+            library.began[#library.began + 1] = Trigger.InputBegan:Connect(function(Input)
+                if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
+                    slider.holding = true
+		slideractive = true
+                         function activateSlider()
 
-        function activateSlider()
-        
-            while slider.holding do
+	    slideractive = true
+            while slideractive do
                 slider:Refresh()
                 task.wait()
             end
             
         end
-            --
-            library.began[#library.began + 1] = Trigger.InputBegan:Connect(function(Input)
-                if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
-                    slider.holding = true
-                    activateSlider()
+				activateSlider()
                 end
             end)
             --
             library.ended[#library.ended + 1] = uis.InputEnded:Connect(function(Input)
                 if Input.UserInputType == Enum.UserInputType.MouseButton1 and slider.holding and not window.isVisible then
                     slider.holding = false
+				slideractive = false
                 end
             end)
             --  
