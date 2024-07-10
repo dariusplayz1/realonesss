@@ -2092,7 +2092,10 @@ do
             local colorpicker = {toggle, axis = toggle.axis, index = toggle.colorpickers, current = {hh, ss, vv , (transp or 0)}, holding = {picker = false, huepicker = false, transparency = false}, holder = {inline = nil, picker = nil, picker_cursor = nil, huepicker = nil, huepicker_cursor = {}, transparency = nil, transparencybg = nil,inFrame = false, transparency_cursor = {}, drawings = {}}}
             --
             local toggle = self
-  
+
+	 local ColorButton = Instance.new("ImageButton")
+
+			
             local valsat = Instance.new("ImageLabel")
             local dot = Instance.new("Frame")
             local colorhue = Instance.new("ImageLabel")
