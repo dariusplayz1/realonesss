@@ -4178,4 +4178,4 @@ local slideractive = false
 
 end
 
-return library, utility, library.pointers, theme
+return library, utility, library.pointers
