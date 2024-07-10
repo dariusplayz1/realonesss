@@ -1634,7 +1634,7 @@ do
         end
        --
        function list:Get()
-            return list.current
+            return list.options[current]
         end
 
         --
