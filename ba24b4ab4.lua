@@ -3867,7 +3867,7 @@ do
 	   slider.SliderFrame = SliderFrame
 
             FillBG.Name = "FillBG"
-            FillBG.Parent = SliderFrame
+            FillBG.Parent = slider.SliderFrame
             FillBG.BackgroundColor3 = Color3.fromRGB(170, 85, 235)
             FillBG.BorderColor3 = Color3.fromRGB(0, 0, 0)
             FillBG.BorderSizePixel = 0
