@@ -3842,7 +3842,6 @@ do
         local slider = {min = min, max = max, Disabled = false, sub = sub, decimals = decimals, axis = section.currentAxis, current = -99999, holding = false}
         --
   
-
         if name then
              
             local Display = Instance.new("TextLabel")
