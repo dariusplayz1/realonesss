@@ -1647,7 +1647,7 @@ do
                 if not window.isVisible and value1.Text ~= "" then
                 for i=1, list.max do
              
-                        list.current = list.options[i]
+                         list.current = table.find(list.options,value1.Text)
                         list:Refresh()
               
                 end
