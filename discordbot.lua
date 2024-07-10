@@ -3840,15 +3840,15 @@ do
         --
  
         local Display = Instance.new("TextLabel")
-
-        if name then
-             
+    
             local Slider = Instance.new("Frame")
             local SliderFrame = Instance.new("Frame")
             local Fill = Instance.new("Frame")
             local Trigger = Instance.new("TextButton")
             local TextLabel = Instance.new("TextLabel")
     
+        if name then
+         
             Slider.Name = name
             Slider.Parent = section.sectionFrame
             Slider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
