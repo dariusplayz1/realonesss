@@ -2249,6 +2249,19 @@ do
                         colorpicker.open = not colorpicker.open
                         
 
+                        local UICorner = Instance.new("UICorner")
+                        local UIGradient = Instance.new("UIGradient")
+                        local TextLabel = Instance.new("TextLabel")
+                        local valsat = Instance.new("ImageLabel")
+                        local dot = Instance.new("Frame")
+                        local Trigger = Instance.new("TextButton")
+                        local colorhue = Instance.new("ImageLabel")
+                        local color = Instance.new("Frame")
+                        local Trigger_2 = Instance.new("TextButton")
+                        local transval = Instance.new("ImageLabel")
+                        local trans = Instance.new("Frame")
+                        local ImageLabel = Instance.new("ImageLabel")
+                        local Trigger_3 = Instance.new("TextButton")
                         local ColorPicker = Instance.new("Frame")
                         local UIGradient_2 = Instance.new("UIGradient")
                         local UIGradient_3 = Instance.new("UIGradient")
