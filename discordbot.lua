@@ -4167,7 +4167,7 @@ local slideractive = false
         --
         return slider
         end
-
+        section.sectionFrame.Size = UDim2.new(0, 230, 0, section.UIListLayout.AbsoluteContentSize.Y + 7)
     end
 
 end
