@@ -1,4 +1,4 @@
---[[
+:--[[
   Private library owned by dadu
   last modified: 10/07/2024
   
@@ -3863,6 +3863,7 @@ do
             SliderFrame.BorderSizePixel = 2
             SliderFrame.Position = UDim2.new(0.118181542, 0, 0.540547907, 4)
             SliderFrame.Size = UDim2.new(0, 165, 0, 8)
+	    slider.SliderFrame = SliderFrame
             library.objects[SliderFrame] = true
 
             FillBG.Name = "FillBG"
@@ -3904,14 +3905,14 @@ do
             Display.TextStrokeTransparency = 0.730
             library.objects[Display] = true
 
-            local str = Instance.new("UIStroke",SliderFrame)
+            local str = Instance.new("UIStroke",slider.SliderFrame)
             str.Thickness = 1
             str.Color = Color3.fromRGB(48,48,48)
             str.Enabled = true
             library.objects[str] = true
 
             Trigger.Name = "Trigger"
-            Trigger.Parent = SliderFrame
+            Trigger.Parent = slider.SliderFrame
             Trigger.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Trigger.BackgroundTransparency = 1.000
             Trigger.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -3945,13 +3946,13 @@ do
             local percent;
   
 
-            if (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset <= 1 and (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset >= 0 then
+            if (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / slider.SliderFrame.Size.X.Offset <= 1 and (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / slider.SliderFrame.Size.X.Offset >= 0 then
             slider.FillBG.Size = UDim2.new((mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset,0,0,8)
-            percent = ((mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset)
-            elseif (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset <= 0 then
+            percent = ((mouseLocation.X - slider.Trigger.AbsolutePosition.X) / slider.SliderFrame.Size.X.Offset)
+            elseif (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / slider.SliderFrame.Size.X.Offset <= 0 then
             slider.FillBG.Size = UDim2.new(0,0,0,8)
             percent = 0
-            elseif (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset >= 1 then
+            elseif (mouseLocation.X - slider.Trigger.AbsolutePosition.X) / slider.SliderFrame.Size.X.Offset >= 1 then
             slider.FillBG.Size = UDim2.new(1,0,0,8)
             percent = 1
             end
@@ -3997,7 +3998,7 @@ do
             library.pointers[tostring(pointer)] = slider
         end
         --
-	print(slider)
+
         return slider
     end
 end
