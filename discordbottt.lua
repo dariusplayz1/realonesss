@@ -1558,7 +1558,7 @@ do
         local info = info or {}
         local max = info.max or info.Max or info.maximum or info.Maximum or 8
         local options = info.options or info.Options or {"1", "2", "3"}
-        local current = info.def or info.Default or info.current or info.Current or options[1]
+        local current = info.def or info.Default or info.current or info.Current or 1
         --
         local window = self.window
         local page = self.page
@@ -1615,22 +1615,7 @@ do
 
         function list:Set(current)
             list.current = current
-            for i,v in pairs(ListFrame:GetChildren()) do
-
-                if v.ClassName == "TextButton" then
-
-                    if v.Text == tostring(list.current) then
-
-                        game:GetService("TweenService"):Create(v, TweenInfo.new(.35) , { TextColor3 = Color3.fromRGB(170, 85, 235) }):Play()
-
-                    else
-
-                        game:GetService("TweenService"):Create(v, TweenInfo.new(.35) , { TextColor3 = Color3.fromRGB(180,180,180) }):Play()
-
-                    end
-                end
-            end
-
+    	    list:Refresh()
         end
        --
        function list:Get()
@@ -1678,7 +1663,9 @@ do
                
             end
         end
-
+	
+   
+        --
         --
         if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " and not library.pointers[tostring(pointer)] then
             library.pointers[tostring(pointer)] = list
