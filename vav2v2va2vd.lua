@@ -3863,8 +3863,8 @@ do
             SliderFrame.BorderSizePixel = 2
             SliderFrame.Position = UDim2.new(0.118181542, 0, 0.540547907, 4)
             SliderFrame.Size = UDim2.new(0, 165, 0, 8)
-	    slider.SliderFrame = SliderFrame
             library.objects[SliderFrame] = true
+	   slider.SliderFrame = SliderFrame
 
             FillBG.Name = "FillBG"
             FillBG.Parent = SliderFrame
