@@ -1558,7 +1558,7 @@ do
         local info = info or {}
         local max = info.max or info.Max or info.maximum or info.Maximum or 8
         local options = info.options or info.Options or {"1", "2", "3"}
-        local current = info.def or info.Default or info.current or info.Current or tostring(options[1])
+        local current = info.def or info.Default or info.current or info.Current or options[1]
         --
         local window = self.window
         local page = self.page
