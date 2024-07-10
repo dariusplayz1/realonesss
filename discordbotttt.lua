@@ -4115,6 +4115,7 @@ do
             
             --
             function slider:Set(value)
+		if value then
                 local oldval = slider.current
                 --
                 slider.current = math.clamp(math.round(value * slider.decimals) / slider.decimals, slider.min, slider.max)
@@ -4128,7 +4129,8 @@ do
                     slider.Disabled = disabledtext ~= nil and disabledtext ~= false
                     callback(slider.current)
                 end
-            end
+          	  end
+		end
             --
             function slider:Refresh()
                 local mouseLocation = utility:MouseLocation()
