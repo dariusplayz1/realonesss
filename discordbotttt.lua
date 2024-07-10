@@ -3947,7 +3947,7 @@ do
                 local mouseLocation = utility:MouseLocation()
                 local percent;
 
-		print(Trigger.Name)
+		
 
                 if (mouseLocation.X - Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset <= 1 and (mouseLocation.X - Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset >= 0 then
                 Fill.Size = UDim2.new((mouseLocation.X - Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset,0,0,8)
@@ -3988,6 +3988,7 @@ do
             library.began[#library.began + 1] = Trigger.InputBegan:Connect(function(Input)
                 if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
                     slider.holding = true
+		print(Trigger.Name)
                     activateSlider()
                 end
             end)
