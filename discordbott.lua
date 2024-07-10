@@ -3877,7 +3877,7 @@ do
             Fill.Size = UDim2.new(0, 0, 0, 8)
             library.objects[Fill] = true
 
-            Trigger.Name = "Trigger"
+            Trigger.Name = name
             Trigger.Parent = SliderFrame
             Trigger.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Trigger.BackgroundTransparency = 1.000
@@ -3947,6 +3947,7 @@ do
                 local mouseLocation = utility:MouseLocation()
                 local percent;
 
+		print(Trigger.Name)
 
                 if (mouseLocation.X - Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset <= 1 and (mouseLocation.X - Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset >= 0 then
                 Fill.Size = UDim2.new((mouseLocation.X - Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset,0,0,8)
@@ -3959,7 +3960,6 @@ do
                 percent = 1
                 end
 
-                warn(percent)
 
                 local value = math.round((slider.min + (slider.max - slider.min) * percent) * slider.decimals) / slider.decimals
                 value = math.clamp(value, slider.min, slider.max)
