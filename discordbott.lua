@@ -2587,7 +2587,7 @@ do
             end
             toggle.colorpickers = toggle.colorpickers + 1
             --
-            return colorpicker
+            return colorpicker, toggle
         end
 
         function toggle:Keybind(info)
