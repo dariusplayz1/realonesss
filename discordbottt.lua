@@ -3271,6 +3271,11 @@ do
                         --
                         dropdown.holder.buttons[#dropdown.holder.buttons + 1] = {value1, dropdown.options[Index]}
                         --
+		    UIListLayout.Parent = ListFrame
+                    UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+                    UIListLayout.Padding = UDim.new(0.0149999997, 0)
+
+                    ListFrame.Size = UDim2.new(0, 166,0,UIListLayout.AbsoluteContentSize.Y + 6)
 
                         
                     end
@@ -3305,10 +3310,6 @@ do
 
                     UIPadding.Parent = ListFrame
                     UIPadding.PaddingTop = UDim.new(0, 2)
-
-                    UIListLayout.Parent = ListFrame
-                    UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-                    UIListLayout.Padding = UDim.new(0.0149999997, 0)
 
                     ListFrame.Size = UDim2.new(0, 166,0,UIListLayout.AbsoluteContentSize.Y + 6)
 
