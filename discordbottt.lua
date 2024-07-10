@@ -3858,14 +3858,14 @@ do
             Slider.BorderColor3 = Color3.fromRGB(0, 0, 0)
             Slider.BorderSizePixel = 0
             Slider.Position = UDim2.new(0, 0, 0.976744175, 0)
-            Slider.Size = UDim2.new(0, 220, 0, 28)
+            Slider.Size = UDim2.new(0, 220, 0, 32)
 
             SliderFrame.Name = name.."SliderFrame"
             SliderFrame.Parent = Slider
             SliderFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
             SliderFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
             SliderFrame.BorderSizePixel = 2
-            SliderFrame.Position = UDim2.new(0.118181542, 0, 0.540547907, 4)
+            SliderFrame.Position = UDim2.new(0.118181542, 0, 0.540547907, 6)
             SliderFrame.Size = UDim2.new(0, 165, 0, 8)
             library.objects[SliderFrame] = true
 
@@ -3895,7 +3895,7 @@ do
             TextLabel.BackgroundTransparency = 1.000
             TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
             TextLabel.BorderSizePixel = 0
-            TextLabel.Position = UDim2.new(0.118181817, 0, 0.0700000003, -5)
+            TextLabel.Position = UDim2.new(0.118181817, 0, 0.0700000003, -3)
             TextLabel.Size = UDim2.new(0, 124, 0, 22)
             TextLabel.FontFace = library.font
             TextLabel.Text = name
