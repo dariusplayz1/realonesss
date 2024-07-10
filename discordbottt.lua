@@ -2093,8 +2093,8 @@ do
             --
             local toggle = self
 
-	 local ColorButton = Instance.new("ImageButton")
-
+	    local ColorButton = Instance.new("ImageButton")
+            local UIGradient = Instance.new("UIGradient")
 			
             local valsat = Instance.new("ImageLabel")
             local dot = Instance.new("Frame")
@@ -2242,8 +2242,13 @@ do
                         colorpicker.open = not colorpicker.open
                         
 
-		        local UICorner = Instance.new("UICorner")
-                        local UIGradient = Instance.new("UIGradient")
+			local valsat = Instance.new("ImageLabel")
+                        local dot = Instance.new("Frame")
+                        local colorhue = Instance.new("ImageLabel")
+                        local color = Instance.new("Frame")
+                        local transval = Instance.new("ImageLabel")
+                        local trans = Instance.new("Frame")            
+                        local UICorner = Instance.new("UICorner")
                         local TextLabel = Instance.new("TextLabel")
                         local Trigger = Instance.new("TextButton")
                         local Trigger_2 = Instance.new("TextButton")
