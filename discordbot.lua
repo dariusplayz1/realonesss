@@ -2034,9 +2034,7 @@ do
                  UIGradient.Color = toggle.current == true and ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(141, 73, 192)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(56, 40, 68))} or ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(47,47,47)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(22,22,22))}
                 --
                 callback(toggle.current)
-                --
-                warn(toggle.keybind.keybindname)
-                warn(keybindcurrent)
+             
                 --
                 if toggle.keybind and keybindcurrent then
                     toggle.keybind.active = bool
@@ -4007,7 +4005,7 @@ do
             if sliderrr.current ~= oldval then
                 local disabledtext = disable and ((sliderrr.current <= disable[2] or sliderrr.current >= disable[3]) and disable[1])
                 local percent = 1 - ((sliderrr.max - sliderrr.current) / (sliderrr.max - sliderrr.min))
-                print(percent)
+       		
                 sliderrr.Display.Text = disabledtext or (sliderrr.current..sliderrr.sub) -- "/"..maxtext..slider.sub
                 Fill.Size = UDim2.new(percent,0,0,8)
                 sliderrr.Disabled = disabledtext ~= nil and disabledtext ~= false
@@ -4018,7 +4016,8 @@ do
         function sliderrr:Refresh()
             local mouseLocation = utility:MouseLocation()
             local percent;
-  
+
+	print(sliderrr.Display.Text)
 
             if (mouseLocation.X - sliderrr.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset <= 1 and (mouseLocation.X - sliderrr.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset >= 0 then
             Fill.Size = UDim2.new((mouseLocation.X - sliderrr.Trigger.AbsolutePosition.X) / SliderFrame.Size.X.Offset,0,0,8)
@@ -4030,8 +4029,6 @@ do
             Fill.Size = UDim2.new(1,0,0,8)
             percent = 1
             end
-
-            warn(percent)
 
             local value = math.round((sliderrr.min + (sliderrr.max - sliderrr.min) * percent) * sliderrr.decimals) / sliderrr.decimals
             value = math.clamp(value, sliderrr.min, sliderrr.max)
