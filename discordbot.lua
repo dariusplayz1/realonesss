@@ -1648,7 +1648,7 @@ do
                 for i=1, list.max do
              
                          list.current = table.find(list.options,value1.Text)
-		   print(list.current)
+		
                         list:Refresh()
               
                 end
@@ -1758,10 +1758,6 @@ do
 
         section.sectionFrame.Size = UDim2.new(0, 230, 0, section.UIListLayout.AbsoluteContentSize.Y + 7)
 
-        if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " and not library.pointers[tostring(pointer)] then
-            library.pointers[tostring(pointer)] = button
-        end
-        
         return button
     end
 
