@@ -3854,7 +3854,7 @@ do
         
         if name then
        
-            Slider.Name = z
+            Slider.Name = name
             Slider.Parent = section.sectionFrame
             Slider.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Slider.BackgroundTransparency = 2.000
