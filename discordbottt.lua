@@ -1846,7 +1846,7 @@ do
 
                     if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
         
-                        buttons[1][2]:Set()
+                        buttons[1][2]()
         
                     end
         
@@ -1904,7 +1904,7 @@ do
 
                     if Input.UserInputType == Enum.UserInputType.MouseButton1 and not window.isVisible then
         
-                        buttons[2][2]:Set()
+                        buttons[2][2]()
         
                     end
         
