@@ -2089,20 +2089,26 @@ do
             local callback = info.callback or info.callBack or info.Callback or info.CallBack or function()end
             --
             local hh, ss, vv = def:ToHSV()
-            local colorpicker = {toggle, axis = toggle.axis, index = toggle.colorpickers, current = {hh, ss, vv , (transp or 0)}, holding = {picker = false, huepicker = false, transparency = false}, holder = {inline = nil, picker = nil, picker_cursor = nil, huepicker = nil, huepicker_cursor = {}, transparency = nil, transparencybg = nil,inFrame = false, transparency_cursor = {}, drawings = {}}}
+            local colorpicker = {
+                toggle, 
+                axis = toggle.axis, 
+                index = toggle.colorpickers, 
+                current = {hh, ss, vv , (transp or 0)}, 
+                holding = {picker = false, huepicker = false, transparency = false}, 
+                holder = {inline = nil, picker = nil, picker_cursor = nil, huepicker = nil, huepicker_cursor = {}, transparency = nil, transparencybg = nil,inFrame = false, transparency_cursor = {}, drawings = {}},
+                Trigger = nil,
+                valsat = nil,
+                colorhue = nil,
+                Trigger_2 = nil,
+                transval = nil,
+                Trigger_3 = nil
+            }
             --
             local toggle = self
 
-	    local ColorButton = Instance.new("ImageButton")
+            local ColorButton = Instance.new("ImageButton")
             local UIGradient = Instance.new("UIGradient")
-			
-            local valsat = Instance.new("ImageLabel")
-            local dot = Instance.new("Frame")
-            local colorhue = Instance.new("ImageLabel")
-            local color = Instance.new("Frame")
-            local transval = Instance.new("ImageLabel")
-            local trans = Instance.new("Frame")
-            
+
             ColorButton.Name = "ColorButton"
             ColorButton.Parent = toggle.addons
             ColorButton.BackgroundColor3 = def
@@ -2149,10 +2155,10 @@ do
 
                 local Mouse = game.Players.LocalPlayer:GetMouse()
              
-                if colorpicker.open and colorpicker.holding.picker then
+                if colorpicker.open and colorpicker.holding.picker and colorpicker.valsat and colorpicker.Trigger then
                     
-                    local slider = valsat
-                    local trigger = Trigger
+                    local slider = colorpicker.valsat
+                    local trigger = colorpicker.Trigger
 
                     colorpicker.current[2] = math.clamp(Mouse.X - trigger.AbsolutePosition.X, 0, trigger.AbsoluteSize.X) / trigger.AbsoluteSize.X -- 2
                     colorpicker.current[3] = 1-(math.clamp(Mouse.Y - trigger.AbsolutePosition.Y, 0, trigger.AbsoluteSize.Y) / trigger.AbsoluteSize.Y) --3 
@@ -2175,10 +2181,10 @@ do
                         slider.Parent.transval.UIGradient.Color = colorSequence
                     end
 
-                elseif colorpicker.open and colorpicker.holding.huepicker then
+                elseif colorpicker.open and colorpicker.holding.huepicker and colorpicker.colorhue and colorpicker.Trigger_2 then
 
-                    local slider = colorhue
-                    local trigger = Trigger_2
+                    local slider = colorpicker.colorhue
+                    local trigger = colorpicker.Trigger_2
 
                     colorpicker.current[1] = (math.clamp(Mouse.Y - trigger.AbsolutePosition.Y, 0, trigger.AbsoluteSize.Y) / trigger.AbsoluteSize.Y)
 
@@ -2204,10 +2210,10 @@ do
                     end
 
                     
-                elseif colorpicker.open and colorpicker.holding.transparency and transp then
+                elseif colorpicker.open and colorpicker.holding.transparency and transp and colorpicker.transval and colorpicker.Trigger_3 then
 
-                    local slider = transval
-                    local trigger = Trigger_3
+                    local slider = colorpicker.transval
+                    local trigger = colorpicker.Trigger_3
 
                    colorpicker.current[4] = 1 - (math.clamp(Mouse.X - trigger.AbsolutePosition.X, 0, trigger.AbsoluteSize.X) / trigger.AbsoluteSize.X)
                     --
@@ -2240,9 +2246,9 @@ do
                   
                         window:CloseContent()
                         colorpicker.open = not colorpicker.open
-                        
+                  
 
-			local valsat = Instance.new("ImageLabel")
+                        local valsat = Instance.new("ImageLabel")
                         local dot = Instance.new("Frame")
                         local colorhue = Instance.new("ImageLabel")
                         local color = Instance.new("Frame")
@@ -2257,7 +2263,6 @@ do
                         local ColorPicker = Instance.new("Frame")
                         local UIGradient_2 = Instance.new("UIGradient")
                         local UIGradient_3 = Instance.new("UIGradient")
-
 
                         --Properties:
 
@@ -2367,6 +2372,7 @@ do
                         valsat.Position = UDim2.new(0.0199990869, 0, 0.12645714, 0)
                         valsat.Size = UDim2.new(0, 175, 0, 151)
                         valsat.Image = "http://www.roblox.com/asset/?id=18248267641"
+                        colorpicker.valsat = valsat
 
                         dot.Name = "dot"
                         dot.Parent = valsat
@@ -2392,6 +2398,7 @@ do
                         Trigger.Text = ""
                         Trigger.TextColor3 = Color3.fromRGB(0, 0, 0)
                         Trigger.TextSize = 14.000
+                        colorpicker.Trigger = Trigger
 
                         colorhue.Name = "colorhue"
                         colorhue.Parent = ColorPicker
@@ -2400,6 +2407,7 @@ do
                         colorhue.Position = UDim2.new(0.920000076, 0, 0.12645714, 0)
                         colorhue.Size = UDim2.new(0, 11, 0, 151)
                         colorhue.Image = "http://www.roblox.com/asset/?id=18248283329"
+                        colorpicker.colorhue = colorhue
 
                         color.Name = "color"
                         color.Parent = colorhue
@@ -2421,7 +2429,7 @@ do
                         Trigger_2.Text = ""
                         Trigger_2.TextColor3 = Color3.fromRGB(0, 0, 0)
                         Trigger_2.TextSize = 14.000
-
+                        colorpicker.Trigger_2 = Trigger_2
                         
 
                         library.began[#library.began + 1] = Trigger_2.MouseButton1Down:Connect(function()
@@ -2519,6 +2527,7 @@ do
                         transval.Size = UDim2.new(0, 175, 0, 11)
                         transval.ZIndex = 2
                         transval.Image = ""
+                        colorpicker.transval = transval
 
                         trans.Name = "trans"
                         trans.Parent = transval
@@ -2560,6 +2569,7 @@ do
                         Trigger_3.Text = ""
                         Trigger_3.TextColor3 = Color3.fromRGB(0, 0, 0)
                         Trigger_3.TextSize = 14.000
+                        colorpicker.Trigger_3 = Trigger_3
 
                         colorpicker.holder.drawings[ColorPicker] = ColorPicker
 
