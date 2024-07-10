@@ -2637,24 +2637,18 @@ do
                 if input.EnumType then
                     if input.EnumType == Enum.KeyCode or input.EnumType == Enum.UserInputType then
                         if Find(allowedKeyCodes, input.Name) or Find(allowedInputTypes, input.Name) then
-                            if input.Name ~= "Backspace" then
+                          
                             inputTable = {input.EnumType == Enum.KeyCode and "KeyCode" or "UserInputType", input.Name}
                             --
                             keybind.current = inputTable
                             keybindbutton.Text = #keybind.current > 0 and "["..keybind:Shorten(keybind.current[2]).."]" or "[...]"
-                            else
-                            inputTable = {"KeyCode", "Unknown"}
-                        --
-                        keybind.current = inputTable
-                        keybindbutton.Text = "[None]"
-                            end
-		
+                
                             --
                             return true
                         end
                     end
                 end
-	 	print(keybind.current[1],keybind.current[2])
+	 	
                 --
                 return false
             end
