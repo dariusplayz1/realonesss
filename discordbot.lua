@@ -3895,7 +3895,7 @@ do
             TextLabel.BackgroundTransparency = 1.000
             TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
             TextLabel.BorderSizePixel = 0
-            TextLabel.Position = UDim2.new(0.118181817, 0, 0.0700000003, 0)
+            TextLabel.Position = UDim2.new(0.118181817, 0, 0.0700000003, -1)
             TextLabel.Size = UDim2.new(0, 124, 0, 22)
             TextLabel.FontFace = library.font
             TextLabel.Text = name
