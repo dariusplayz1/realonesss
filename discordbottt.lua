@@ -3865,7 +3865,7 @@ do
             SliderFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
             SliderFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
             SliderFrame.BorderSizePixel = 2
-            SliderFrame.Position = UDim2.new(0.118181542, 0, 0.540547907, 0)
+            SliderFrame.Position = UDim2.new(0.118181542, 0, 0.540547907, 3)
             SliderFrame.Size = UDim2.new(0, 165, 0, 8)
             library.objects[SliderFrame] = true
 
