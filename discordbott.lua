@@ -2078,7 +2078,7 @@ do
 
         --// toggle addons
 
-             function toggle:Colorpicker(info)
+           function toggle:Colorpicker(info)
 
             local info = info or {}
             local cpinfo = info.info or info.Info or name
@@ -2108,7 +2108,7 @@ do
             local Trigger_3 = Instance.new("TextButton")
     
             local ColorButton = Instance.new("ImageButton")
-            local UIGradient = Instance.new("UIGradient")
+ 
             
             ColorButton.Name = "ColorButton"
             ColorButton.Parent = toggle.addons
@@ -2251,7 +2251,7 @@ do
 
                         local ColorPicker = Instance.new("Frame")
                         local UIGradient_2 = Instance.new("UIGradient")
-            
+                        local UIGradient_3 = Instance.new("UIGradient")
 
                         --Properties:
 
@@ -2336,10 +2336,10 @@ do
                         BackEffect.Image = "http://www.roblox.com/asset/?id=4996891970"
                         BackEffect.ImageColor3 = Color3.fromRGB(170, 85, 235)
 
-                        UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.83, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(111, 111, 111))}
-                        UIGradient.Rotation = 90
-                        UIGradient.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 0.00), NumberSequenceKeypoint.new(0.90, 0.00), NumberSequenceKeypoint.new(1.00, 0.00)}
-                        UIGradient.Parent = ColorPicker
+                        UIGradient_3.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(0.83, Color3.fromRGB(255, 255, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(111, 111, 111))}
+                        UIGradient_3.Rotation = 90
+                        UIGradient_3.Transparency = NumberSequence.new{NumberSequenceKeypoint.new(0.00, 0.00), NumberSequenceKeypoint.new(0.90, 0.00), NumberSequenceKeypoint.new(1.00, 0.00)}
+                        UIGradient_3.Parent = ColorPicker
 
                         TextLabel.Parent = ColorPicker
                         TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
