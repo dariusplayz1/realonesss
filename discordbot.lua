@@ -2033,48 +2033,27 @@ do
             return toggle.current
         end
         --
-              function toggle:Set(bool)
-            if toggle then
+        function toggle:Set(bool)
+           
             if typeof(bool) == "boolean" then
                 toggle.current = bool
-                 UIGradient.Color = toggle.current == true and ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(141, 73, 192)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(56, 40, 68))} or ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(47,47,47)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(22,22,22))}
+                UIGradient.Color = toggle.current == true and ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(141, 73, 192)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(56, 40, 68))} or ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(47,47,47)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(22,22,22))}
+               --
+               callback(toggle.current)
                 --
-                callback(toggle.current)
-             
-                --
-                if toggle.keybind and keybind.current[2] then
-                    toggle.keybind.active = bool
+                if toggle.keybind then
+                    toggle.keybind.active = (bool and (toggle.keybind.mode == "Always" or toggle.keybind.mode == "Off Hold") or false)
                     toggle.keybind:Callback()
                     --
-                    if toggle.keybind.mode == "Off Hold" then
-                        
-                        if toggle.current then
-                            window.keybindslist:Add(toggle.keybind.keybindname, keybind.current[2])
-                        else
-                            window.keybindslist:Remove(toggle.keybind.keybindname)
-                        end
-
-                    elseif toggle.keybind.mode == "On Hold" then
-
-                        if toggle.current then
-                            window.keybindslist:Add(toggle.keybind.keybindname, keybind.current[2])
-                        else
-                            window.keybindslist:Remove(toggle.keybind.keybindname)
-                        end
-                            
-                    elseif toggle.keybind.mode == "Toggle" then
-
-                        if toggle.current then
-                            window.keybindslist:Add(toggle.keybind.keybindname, keybind.current[2])
-                        else
-                           window.keybindslist:Remove(toggle.keybind.keybindname)
-                        end
-
+                    if toggle.keybind.mode == "Off Hold" and toggle.current then
+                        window.keybindslist:Add(toggle.keybind.keybindname, keybind.current[2])
+                    else
+                        window.keybindslist:Remove(toggle.keybind.keybindname)
                     end
-                    
                 end
             end
-        end
+
+    
         end
         library.began[#library.began + 1] = ActualButton.InputBegan:Connect(function(Input)
 
