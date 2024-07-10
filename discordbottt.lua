@@ -2098,7 +2098,7 @@ do
 
         --// toggle addons
 
-        function toggle:Colorpicker(info)
+         function toggle:Colorpicker(info)
 
             local info = info or {}
             local cpinfo = info.info or info.Info or name
@@ -2142,7 +2142,100 @@ do
             UIGradient.Rotation = -90
             UIGradient.Parent = ColorButton
             --
-            
+            function colorpicker:Set(color, transp_val)
+                if typeof(color) == "table" then
+                    colorpicker.current = color
+                    ColorButton.BackgroundColor3 = Color3.fromHSV(colorpicker.current[1], colorpicker.current[2], colorpicker.current[3])
+                    ColorButton.ImageTransparency = 1 - colorpicker.current[4]
+                    valt.Value = 1 - colorpicker.current[4]
+                    callback(Color3.fromHSV(colorpicker.current[1], colorpicker.current[2], colorpicker.current[3]), colorpicker.current[4])
+                elseif typeof(color) == "Color3" then
+                    local h, s, v = color:ToHSV()
+                    colorpicker.current = {h, s, v, (transp_val or 0)}
+                    ColorButton.BackgroundColor3 = Color3.fromHSV(colorpicker.current[1], colorpicker.current[2], colorpicker.current[3])
+                    ColorButton.ImageTransparency = 1 - colorpicker.current[4]
+                    valt.Value = 1 - colorpicker.current[4]
+                    callback(Color3.fromHSV(colorpicker.current[1], colorpicker.current[2], colorpicker.current[3]), colorpicker.current[4])
+                end
+            end
+
+            function colorpicker:Refresh()
+
+                local Mouse = game.Players.LocalPlayer:GetMouse()
+             
+                if colorpicker.open and colorpicker.holding.picker then
+                    
+                    local slider = valsat
+                    local trigger = Trigger
+
+                    colorpicker.current[2] = math.clamp(Mouse.X - trigger.AbsolutePosition.X, 0, trigger.AbsoluteSize.X) / trigger.AbsoluteSize.X -- 2
+                    colorpicker.current[3] = 1-(math.clamp(Mouse.Y - trigger.AbsolutePosition.Y, 0, trigger.AbsoluteSize.Y) / trigger.AbsoluteSize.Y) --3 
+                    
+                    local Colorr = Color3.new(colorpicker.current[1],colorpicker.current[2],colorpicker.current[3])
+                    
+                    slider.dot.Position = UDim2.new(colorpicker.current[2], -3, 1-colorpicker.current[3] , -3)
+                    
+                    local h, s, v = Colorr:ToHSV()
+                    
+                    ColorButton.BackgroundColor3 = Color3.fromHSV(colorpicker.current[1],colorpicker.current[2],colorpicker.current[3])
+
+                    if transp then
+
+                        local colorSequence = ColorSequence.new{
+                            ColorSequenceKeypoint.new(0, Color3.fromHSV(colorpicker.current[1],colorpicker.current[2],colorpicker.current[3])),
+                            ColorSequenceKeypoint.new(1, Color3.fromHSV(colorpicker.current[1],colorpicker.current[2],colorpicker.current[3]))
+                        }
+
+                        slider.Parent.transval.UIGradient.Color = colorSequence
+                    end
+
+                elseif colorpicker.open and colorpicker.holding.huepicker then
+
+                    local slider = colorhue
+                    local trigger = Trigger_2
+
+                    colorpicker.current[1] = (math.clamp(Mouse.Y - trigger.AbsolutePosition.Y, 0, trigger.AbsoluteSize.Y) / trigger.AbsoluteSize.Y)
+
+                    slider.color.BackgroundColor3 = Color3.fromHSV(colorpicker.current[1],1,1)
+                    
+                    slider.Parent.valsat.BackgroundColor3 = Color3.fromHSV(colorpicker.current[1],1,1)
+                    
+                    slider.color.Position = UDim2.new(0, -3, colorpicker.current[1], -2)
+                    
+
+                    
+                    ColorButton.BackgroundColor3 = Color3.fromHSV(colorpicker.current[1],colorpicker.current[2],colorpicker.current[3])
+               
+                 
+                    if transp then
+
+                        local colorSequence = ColorSequence.new{
+                            ColorSequenceKeypoint.new(0, Color3.fromHSV(colorpicker.current[1],colorpicker.current[2],colorpicker.current[3])),
+                            ColorSequenceKeypoint.new(1, Color3.fromHSV(colorpicker.current[1],colorpicker.current[2],colorpicker.current[3]))
+                        }
+
+                    slider.Parent.transval.UIGradient.Color = colorSequence
+                    end
+
+                    
+                elseif colorpicker.open and colorpicker.holding.transparency and transp then
+
+                    local slider = transval
+                    local trigger = Trigger_3
+
+                   colorpicker.current[4] = 1 - (math.clamp(Mouse.X - trigger.AbsolutePosition.X, 0, trigger.AbsoluteSize.X) / trigger.AbsoluteSize.X)
+                    --
+                    slider.trans.Position = UDim2.new(1-colorpicker.current[4], -3, 0, -3, trigger)
+                
+                    ColorButton.ImageTransparency = (1 -colorpicker.current[4])
+                    valt.Value = (1 -colorpicker.current[4])
+                end
+                --
+                colorpicker:Set(colorpicker.current)
+            end
+
+            local sliderActive = false
+
             --
             function colorpicker:Get()
                 return Color3.fromHSV(colorpicker.current[1], colorpicker.current[2], colorpicker.current[3])
@@ -2342,115 +2435,23 @@ do
                         Trigger_2.TextColor3 = Color3.fromRGB(0, 0, 0)
                         Trigger_2.TextSize = 14.000
 
-                        function colorpicker:Set(color, transp_val)
-                            if typeof(color) == "table" then
-                                colorpicker.current = color
-                                ColorButton.BackgroundColor3 = Color3.fromHSV(colorpicker.current[1], colorpicker.current[2], colorpicker.current[3])
-                                ColorButton.ImageTransparency = 1 - colorpicker.current[4]
-                                valt.Value = 1 - colorpicker.current[4]
-                                callback(Color3.fromHSV(colorpicker.current[1], colorpicker.current[2], colorpicker.current[3]), colorpicker.current[4])
-                            elseif typeof(color) == "Color3" then
-                                local h, s, v = color:ToHSV()
-                                colorpicker.current = {h, s, v, (transp_val or 0)}
-                                ColorButton.BackgroundColor3 = Color3.fromHSV(colorpicker.current[1], colorpicker.current[2], colorpicker.current[3])
-                                ColorButton.ImageTransparency = 1 - colorpicker.current[4]
-                                valt.Value = 1 - colorpicker.current[4]
-                                callback(Color3.fromHSV(colorpicker.current[1], colorpicker.current[2], colorpicker.current[3]), colorpicker.current[4])
-                            end
-                        end
-
-                        function colorpicker:Refresh()
-
-                            local Mouse = game.Players.LocalPlayer:GetMouse()
-                         
-                            if colorpicker.open and colorpicker.holding.picker then
-                                
-                                local slider = valsat
-                                local trigger = Trigger
-
-                                colorpicker.current[2] = math.clamp(Mouse.X - trigger.AbsolutePosition.X, 0, trigger.AbsoluteSize.X) / trigger.AbsoluteSize.X -- 2
-                                colorpicker.current[3] = 1-(math.clamp(Mouse.Y - trigger.AbsolutePosition.Y, 0, trigger.AbsoluteSize.Y) / trigger.AbsoluteSize.Y) --3 
-                                
-                                local Colorr = Color3.new(colorpicker.current[1],colorpicker.current[2],colorpicker.current[3])
-                                
-                                slider.dot.Position = UDim2.new(colorpicker.current[2], -3, 1-colorpicker.current[3] , -3)
-                                
-                                local h, s, v = Colorr:ToHSV()
-                                
-                                ColorButton.BackgroundColor3 = Color3.fromHSV(colorpicker.current[1],colorpicker.current[2],colorpicker.current[3])
-
-                                if transp then
-
-                                    local colorSequence = ColorSequence.new{
-                                        ColorSequenceKeypoint.new(0, Color3.fromHSV(colorpicker.current[1],colorpicker.current[2],colorpicker.current[3])),
-                                        ColorSequenceKeypoint.new(1, Color3.fromHSV(colorpicker.current[1],colorpicker.current[2],colorpicker.current[3]))
-                                    }
-
-                                    slider.Parent.transval.UIGradient.Color = colorSequence
-                                end
-
-                            elseif colorpicker.open and colorpicker.holding.huepicker then
-            
-                                local slider = colorhue
-                                local trigger = Trigger_2
-            
-                                colorpicker.current[1] = (math.clamp(Mouse.Y - trigger.AbsolutePosition.Y, 0, trigger.AbsoluteSize.Y) / trigger.AbsoluteSize.Y)
-            
-                                slider.color.BackgroundColor3 = Color3.fromHSV(colorpicker.current[1],1,1)
-                                
-                                slider.Parent.valsat.BackgroundColor3 = Color3.fromHSV(colorpicker.current[1],1,1)
-                                
-                                slider.color.Position = UDim2.new(0, -3, colorpicker.current[1], -2)
-                                
-
-                                
-                                ColorButton.BackgroundColor3 = Color3.fromHSV(colorpicker.current[1],colorpicker.current[2],colorpicker.current[3])
-                           
-                             
-                                if transp then
-
-                                    local colorSequence = ColorSequence.new{
-                                        ColorSequenceKeypoint.new(0, Color3.fromHSV(colorpicker.current[1],colorpicker.current[2],colorpicker.current[3])),
-                                        ColorSequenceKeypoint.new(1, Color3.fromHSV(colorpicker.current[1],colorpicker.current[2],colorpicker.current[3]))
-                                    }
-
-                                slider.Parent.transval.UIGradient.Color = colorSequence
-                                end
-            
-                                
-                            elseif colorpicker.open and colorpicker.holding.transparency and transp then
-
-                                local slider = transval
-                                local trigger = Trigger_3
-            
-                               colorpicker.current[4] = 1 - (math.clamp(Mouse.X - trigger.AbsolutePosition.X, 0, trigger.AbsoluteSize.X) / trigger.AbsoluteSize.X)
-                                --
-                                slider.trans.Position = UDim2.new(1-colorpicker.current[4], -3, 0, -3, trigger)
-                            
-                                ColorButton.ImageTransparency = (1 -colorpicker.current[4])
-                                valt.Value = (1 -colorpicker.current[4])
-                            end
-                            --
-                            colorpicker:Set(colorpicker.current)
-                        end
-
-                        local sliderActive = false
-
-                        function activateSlider()
-	
-                            sliderActive = true
-                            while sliderActive do
-                                colorpicker:Refresh()
-                                task.wait()
-                            end
-                            
-                        end
+                        
 
                         library.began[#library.began + 1] = Trigger_2.MouseButton1Down:Connect(function()
 
                             if not window.isVisible then
 
                                 colorpicker.holding.huepicker = true
+                                
+                                function activateSlider()
+
+                                    sliderActive = true
+                                    while sliderActive do
+                                        colorpicker:Refresh()
+                                        task.wait()
+                                    end
+                                    
+                                end
                                 activateSlider()
 
                             end
@@ -2462,6 +2463,15 @@ do
                             if not window.isVisible then
 
                                 colorpicker.holding.picker = true
+                                function activateSlider()
+
+                                    sliderActive = true
+                                    while sliderActive do
+                                        colorpicker:Refresh()
+                                        task.wait()
+                                    end
+                                    
+                                end
                                 activateSlider()
 
                             end
@@ -2473,6 +2483,15 @@ do
                             if not window.isVisible then
 
                                 colorpicker.holding.transparency = true
+                                function activateSlider()
+
+                                    sliderActive = true
+                                    while sliderActive do
+                                        colorpicker:Refresh()
+                                        task.wait()
+                                    end
+                                    
+                                end
                                 activateSlider()
 
                             end
