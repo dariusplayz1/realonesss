@@ -2642,7 +2642,7 @@ do
                             --
                             keybind.current = inputTable
                             keybindbutton.Text = #keybind.current > 0 and "["..keybind:Shorten(keybind.current[2]).."]" or "[...]"
-                
+                            callback(Enum[keybind.current[1]][keybind.current[2]], keybind.active)
                             --
                             return true
                         end
