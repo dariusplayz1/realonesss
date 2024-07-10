@@ -1464,7 +1464,7 @@ do
         local page = self.page
         local section = self
         --
-        local button = {axis = section.currentAxis,frame = nil}
+        local textBox = {axis = section.currentAxis,frame = nil}
         --
     
           local Button = Instance.new("Frame")
@@ -1489,11 +1489,11 @@ do
           ButtonFrame.BorderSizePixel = 2
           ButtonFrame.Position = UDim2.new(0.118181542, 0, 0, 6)
           ButtonFrame.Size = UDim2.new(0, 165, 0, 19)
-          button.frame = ButtonFrame
+          textBox.frame = ButtonFrame
   
           library.objects[ButtonFrame] = true
   
-          local str2va32 = Instance.new("UIStroke",button.frame)
+          local str2va32 = Instance.new("UIStroke",textBox.frame)
           str2va32.Thickness = 1
           str2va32.Color = Color3.fromRGB(45, 45, 45)
           str2va32.Enabled = true
@@ -1542,12 +1542,15 @@ do
 
         section.sectionFrame.Size = UDim2.new(0, 230, 0, section.UIListLayout.AbsoluteContentSize.Y + 7)
 
-        function button:Get()
+        function textBox:Get()
             return TriggerButton.Text
         end
-	
+
+	if pointer and tostring(pointer) ~= "" and tostring(pointer) ~= " " and not library.pointers[tostring(pointer)] then
+            library.pointers[tostring(pointer)] = textBox
+        end
         
-        return button
+        return textBox
     end
 
       function sections:List(info)
