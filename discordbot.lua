@@ -1553,7 +1553,7 @@ do
         return button
     end
 
-    function sections:List(info)
+      function sections:List(info)
 
         local info = info or {}
         local max = info.max or info.Max or info.maximum or info.Maximum or 8
@@ -1632,7 +1632,12 @@ do
             end
 
         end
+       --
+       function list:Get()
+            return list.options[list.current]
+        end
 
+        --
         for i=1, #options do
             
             local value1 = Instance.new("TextButton")
