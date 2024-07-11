@@ -640,13 +640,14 @@ do
                     Title2.BackgroundTransparency = 1.000
                     Title2.BorderColor3 = Color3.fromRGB(0, 0, 0)
                     Title2.BorderSizePixel = 0
-                    Title2.Position = UDim2.new(0, 0, -0.00488210469, 2)
                     Title2.Size = UDim2.new(0, 150, 0, 30)
                     Title2.FontFace = library.font
                     Title2.RichText = true
 		   if keybindvalue ~= "MouseButton1" or keybindvalue ~= "MouseButton2" or keybindvalue ~= "MouseButton3" then
+		 Title2.Position = UDim2.new(0, 0, -0.00488210469, 2)
                     Title2.Text = string.format(' <font color="rgb(170, 85, 235)">  [%s]  </font><font color="rgb(121, 121, 121)">%s</font>',tostring(keybindvalue),tostring(keybindname))
                     else
+			 Title2.Position = UDim2.new(0, 0, -0.00488210469, -4)
                         Title2.Text = string.format(' <font color="rgb(170, 85, 235)">[%s]  </font><font color="rgb(121, 121, 121)">%s</font>',tostring(keybindvalue),tostring(keybindname))
                     end
                     Title2.TextSize = 9
