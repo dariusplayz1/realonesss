@@ -2713,11 +2713,17 @@ do
                             keybind.active = false
                             toggle:Set(keybind.active)
                             callback(Enum[keybind.current[1]][keybind.current[2]], keybind.active)
-                        elseif keybind.mode == "Toggle" then
-                            keybind.active = not keybind.active
+                        elseif keybind.mode == "Toggle" and keybind.active then
+                             keybind.active = false
 				print(keybind.active)
                             toggle:Set(keybind.active)
                             callback(Enum[keybind.current[1]][keybind.current[2]], keybind.active)
+		        elseif keybind.mode == "Toggle" and not keybind.active then
+                             keybind.active = true
+				warn(keybind.active)
+                            toggle:Set(keybind.active)
+                            callback(Enum[keybind.current[1]][keybind.current[2]], keybind.active)
+                
                         end
                     end
                 end
