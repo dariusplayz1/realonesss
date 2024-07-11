@@ -2042,6 +2042,9 @@ do
                     toggle.keybind.active = bool
                     toggle.keybind:Callback()
                     --
+		  warn(toggle.keybind.mode)
+		warn(toggle.keybind.active)
+					
                     if toggle.keybind.mode == "Toggle" and toggle.keybind.active then
                         window.keybindslist:Add(toggle.keybind.keybindname, toggle.keybind.current[2])
                     else
@@ -2708,12 +2711,12 @@ do
                     if Input.KeyCode == Enum[keybind.current[1]][keybind.current[2]] or Input.UserInputType == Enum[keybind.current[1]][keybind.current[2]] then
                         if keybind.mode == "On Hold" then
                             keybind.active = true
-			    window.keybindslist:Add(toggle.keybind.keybindname, toggle.keybind.current[2])
+			   
                             toggle:Set(keybind.active)
                             callback(Enum[keybind.current[1]][keybind.current[2]], keybind.active)
                         elseif keybind.mode == "Off Hold" then
                             keybind.active = false
-			    window.keybindslist:Remove(toggle.keybind.keybindname)
+			   
                             toggle:Set(keybind.active)
                             callback(Enum[keybind.current[1]][keybind.current[2]], keybind.active)
                         elseif keybind.mode == "Toggle" then
@@ -2974,13 +2977,13 @@ do
                             if keybind.mode == "On Hold" then
                                
                                     keybind.active = false
-				    window.keybindslist:Remove(toggle.keybind.keybindname)	
+				
 				    toggle:Set(keybind.active)
                                     callback(Enum[keybind.current[1]][keybind.current[2]], keybind.active)
                             
                             else
                                 keybind.active = true
-				window.keybindslist:Add(toggle.keybind.keybindname, toggle.keybind.current[2])
+				
                                 toggle:Set(keybind.active)
                                 callback(Enum[keybind.current[1]][keybind.current[2]], keybind.active)
                             end
