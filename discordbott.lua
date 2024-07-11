@@ -2039,8 +2039,8 @@ do
                 callback(toggle.current)
                 --
                 if toggle.keybind then
-                    toggle.keybind.active = (bool and (toggle.keybind.mode == "Always" or toggle.keybind.mode == "Off Hold") or false)
-                    toggle.keybind:Callback()
+                    --toggle.keybind.active = (bool and (toggle.keybind.mode == "Always" or toggle.keybind.mode == "Off Hold") or false)
+                    --toggle.keybind:Callback()
                     --
                     if toggle.keybind.mode == "Off Hold" and toggle.current then
                        -- window.keybindslist:Add(toggle.keybind.keybindname, keybind.current[2])
