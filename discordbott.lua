@@ -2031,28 +2031,26 @@ do
             return toggle.current
         end
         --
-        function toggle:Set(bool)
-           
+       function toggle:Set(bool)
             if typeof(bool) == "boolean" then
                 toggle.current = bool
                 UIGradient.Color = toggle.current == true and ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(141, 73, 192)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(56, 40, 68))} or ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(47,47,47)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(22,22,22))}
-               --
-               callback(toggle.current)
+          
+                callback(toggle.current)
                 --
-                if toggle and toggle.keybind then
+                if toggle.keybind then
                     toggle.keybind.active = (bool and (toggle.keybind.mode == "Always" or toggle.keybind.mode == "Off Hold") or false)
                     toggle.keybind:Callback()
                     --
-                    if toggle.keybind.mode == "Off Hold" and toggle and keybind.current then
-                        window.keybindslist:Add(toggle.keybind.keybindname, keybind.current[2])
+                    if toggle.keybind.mode == "Off Hold" and toggle.current then
+                       -- window.keybindslist:Add(toggle.keybind.keybindname, keybind.current[2])
                     else
-                        window.keybindslist:Remove(toggle.keybind.keybindname)
+                       -- window.keybindslist:Remove(toggle.keybind.keybindname)
                     end
                 end
             end
-
-    
         end
+		
         library.began[#library.began + 1] = ActualButton.InputBegan:Connect(function(Input)
 
             if Input.UserInputType == Enum.UserInputType.MouseButton1 then
