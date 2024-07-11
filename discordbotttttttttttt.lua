@@ -29,6 +29,8 @@ local Remove = table.remove
 local Unpack = table.unpack
 local Find = table.find
 -- UI Variables
+local lshortenedInputs = {["MouseButton1"] = "MB1", ["MouseButton2"] = "MB2", ["MouseButton3"] = "MB3", ["Insert"] = "Ins", ["Minus"] = "-", ["Equals"] = "=", ["LeftAlt"] = "LAlt", ["LeftControl"] = "LC", ["LeftShift"] = "LS", ["RightAlt"] = "RAlt", ["RightControl"] = "RC", ["RightShift"] = "RS", ["CapsLock"] = "Caps"}
+--
 local library = {
     font = nil,
     objects = {},
@@ -609,6 +611,11 @@ do
 
                 if keybindname and keybindvalue and not window.keybindslist.keybinds[keybindname] then
 
+		   for i,v in pairs(lshortenedInputs) do
+			if tostring(i) == keybindvalue then
+	                keybindvalue = string.gsub(keybindvalue, i, v)
+			end
+		   end
                     local keybindTable = {}
 
                     local keybind = Instance.new("Frame")
@@ -644,13 +651,7 @@ do
                     Title2.FontFace = library.font
                     Title2.RichText = true
 					
-		   if keybindvalue ~= "MouseButton1" or "MouseButton2" then
-			print(keybindvalue)
                     Title2.Text = string.format(' <font color="rgb(170, 85, 235)">  [%s]  </font><font color="rgb(121, 121, 121)">%s</font>',tostring(keybindvalue),tostring(keybindname))
-                    else
-			print(warn)
-                        Title2.Text = string.format(' <font color="rgb(170, 85, 235)">[%s]  </font><font color="rgb(121, 121, 121)">%s</font>',tostring(keybindvalue),tostring(keybindname))
-                    end
                     Title2.TextSize = 9
                     Title2.TextXAlignment = Enum.TextXAlignment.Left
 
