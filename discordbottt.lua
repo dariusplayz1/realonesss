@@ -536,6 +536,7 @@ do
             library.ended = {}
             library.changed = {}
             --
+            uis.MouseIconEnabled = true
         end
         --
         function window:KeybindsList(info)
@@ -816,6 +817,7 @@ do
                 end
             end)
             --
+	uis.MouseIconEnabled = not window.isVisible
             window.fading = false
         end
         --
