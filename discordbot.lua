@@ -1,8 +1,6 @@
 --[[
   Private library owned by dadu
-  last modified: 10/07/2024
-  
-  will use in the next project [destiny] or [nomercy]
+  last modified: 11/07/2024
 
   To do list:
 
@@ -2041,11 +2039,11 @@ do
                --
                callback(toggle.current)
                 --
-                if toggle.keybind then
+                if toggle and toggle.keybind then
                     toggle.keybind.active = (bool and (toggle.keybind.mode == "Always" or toggle.keybind.mode == "Off Hold") or false)
                     toggle.keybind:Callback()
                     --
-                    if toggle.keybind.mode == "Off Hold" and toggle.current then
+                    if toggle.keybind.mode == "Off Hold" and toggle and toggle.current then
                         window.keybindslist:Add(toggle.keybind.keybindname, keybind.current[2])
                     else
                         window.keybindslist:Remove(toggle.keybind.keybindname)
