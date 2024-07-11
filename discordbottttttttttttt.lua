@@ -651,7 +651,7 @@ do
                     Title2.FontFace = library.font
                     Title2.RichText = true
 					
-                    Title2.Text = string.format(' <font color="rgb(170, 85, 235)">  [%s]  </font><font color="rgb(121, 121, 121)">%s</font>',tostring(keybindvalue),tostring(keybindname))
+                    Title2.Text = string.format(' <font color="rgb(170, 85, 235)">  [%s] </font><font color="rgb(121, 121, 121)">%s</font>',tostring(keybindvalue),tostring(keybindname))
                     Title2.TextSize = 9
                     Title2.TextXAlignment = Enum.TextXAlignment.Left
 
