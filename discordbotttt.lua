@@ -2967,11 +2967,11 @@ do
                     if keybind.current[1] and keybind.current[2] then
                         if Input.KeyCode == Enum[keybind.current[1]][keybind.current[2]] or Input.UserInputType == Enum[keybind.current[1]][keybind.current[2]] then
                             if keybind.mode == "On Hold" then
-                                if keybind.active then
+                               
                                     keybind.active = false
+				    toggle:Set(keybind.active)
                                     callback(Enum[keybind.current[1]][keybind.current[2]], keybind.active)
-                                    toggle:Set(keybind.active)
-                                end
+                            
                             else
                                 keybind.active = true
                                 toggle:Set(keybind.active)
