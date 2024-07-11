@@ -2241,11 +2241,7 @@ do
             --
       
             function colorpicker:Get()
-                if colorpicker.current[4] then
-                return Color3.fromHSV(colorpicker.current[1], colorpicker.current[2], colorpicker.current[3]), colorpicker.current[4]
-                else
-                    return Color3.fromHSV(colorpicker.current[1], colorpicker.current[2], colorpicker.current[3])
-                end
+                return {Color = Color3.fromHSV(colorpicker.current[1], colorpicker.current[2], colorpicker.current[3]), Transparency = colorpicker.current[4]}
             end
 
 
