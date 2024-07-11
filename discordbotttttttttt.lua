@@ -2042,23 +2042,12 @@ do
                     toggle.keybind.active = bool
                     toggle.keybind:Callback()
                     --
-                    if toggle.keybind.mode == "Off Hold" and toggle.keybind.active then
+                    if toggle.keybind.mode == "Toggle" and toggle.keybind.active then
                         window.keybindslist:Add(toggle.keybind.keybindname, toggle.keybind.current[2])
                     else
                         window.keybindslist:Remove(toggle.keybind.keybindname)
                     end
 
-	    	    if toggle.keybind.mode == "On Hold" and toggle.keybind.active then
-                        window.keybindslist:Add(toggle.keybind.keybindname, toggle.keybind.current[2])
-                    else
-                        window.keybindslist:Remove(toggle.keybind.keybindname)
-                    end
-
-	    	    if toggle.keybind.mode == "Toggle" and toggle.keybind.active then
-                        window.keybindslist:Add(toggle.keybind.keybindname, toggle.keybind.current[2])
-                    else
-                        window.keybindslist:Remove(toggle.keybind.keybindname)
-                    end
                 end
             end
         end
@@ -2719,15 +2708,16 @@ do
                     if Input.KeyCode == Enum[keybind.current[1]][keybind.current[2]] or Input.UserInputType == Enum[keybind.current[1]][keybind.current[2]] then
                         if keybind.mode == "On Hold" then
                             keybind.active = true
+			    window.keybindslist:Add(toggle.keybind.keybindname, toggle.keybind.current[2])
                             toggle:Set(keybind.active)
                             callback(Enum[keybind.current[1]][keybind.current[2]], keybind.active)
                         elseif keybind.mode == "Off Hold" then
                             keybind.active = false
+			    window.keybindslist:Remove(toggle.keybind.keybindname)
                             toggle:Set(keybind.active)
                             callback(Enum[keybind.current[1]][keybind.current[2]], keybind.active)
                         elseif keybind.mode == "Toggle" then
                              keybind.active = not keybind.active
-				print(keybind.active)
                             toggle:Set(keybind.active)
                             callback(Enum[keybind.current[1]][keybind.current[2]], keybind.active)
 		       
@@ -2984,11 +2974,13 @@ do
                             if keybind.mode == "On Hold" then
                                
                                     keybind.active = false
+				    window.keybindslist:Remove(toggle.keybind.keybindname)	
 				    toggle:Set(keybind.active)
                                     callback(Enum[keybind.current[1]][keybind.current[2]], keybind.active)
                             
                             else
                                 keybind.active = true
+				window.keybindslist:Add(toggle.keybind.keybindname, toggle.keybind.current[2])
                                 toggle:Set(keybind.active)
                                 callback(Enum[keybind.current[1]][keybind.current[2]], keybind.active)
                             end
