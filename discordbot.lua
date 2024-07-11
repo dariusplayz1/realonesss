@@ -2713,17 +2713,12 @@ do
                             keybind.active = false
                             toggle:Set(keybind.active)
                             callback(Enum[keybind.current[1]][keybind.current[2]], keybind.active)
-                        elseif keybind.mode == "Toggle" and keybind.active then
-                             keybind.active = false
+                        elseif keybind.mode == "Toggle" then
+                             keybind.active = not keybind.active
 				print(keybind.active)
                             toggle:Set(keybind.active)
                             callback(Enum[keybind.current[1]][keybind.current[2]], keybind.active)
-		        elseif keybind.mode == "Toggle" and not keybind.active then
-                             keybind.active = true
-				warn(keybind.active)
-                            toggle:Set(keybind.active)
-                            callback(Enum[keybind.current[1]][keybind.current[2]], keybind.active)
-                
+		       
                         end
                     end
                 end
@@ -2733,7 +2728,7 @@ do
                     if done then
                         keybind.selecting = false
 		
-                        keybind.active = keybind.mode == "Always" and true or false
+                        --keybind.active = keybind.mode == "Always" and true or false
                         --
                         callback(Enum[keybind.current[1]][keybind.current[2]], keybind.active)
                     end
@@ -3991,8 +3986,6 @@ do
                 percent = 1
                 end
 
-                warn(percent)
-
                 local value = math.round((slider.min + (slider.max - slider.min) * percent) * slider.decimals) / slider.decimals
                 value = math.clamp(value, slider.min, slider.max)
                 slider:Set(value)
@@ -4147,8 +4140,6 @@ do
                 Fill.Size = UDim2.new(1,0,0,8)
                 percent = 1
                 end
-
-                warn(percent)
 
                 local value = math.round((slider.min + (slider.max - slider.min) * percent) * slider.decimals) / slider.decimals
                 value = math.clamp(value, slider.min, slider.max)
