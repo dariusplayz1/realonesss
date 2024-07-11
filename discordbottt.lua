@@ -2715,6 +2715,7 @@ do
                             callback(Enum[keybind.current[1]][keybind.current[2]], keybind.active)
                         elseif keybind.mode == "Toggle" then
                             keybind.active = not keybind.active
+				print(keybind.active)
                             toggle:Set(keybind.active)
                             callback(Enum[keybind.current[1]][keybind.current[2]], keybind.active)
                         end
@@ -2725,6 +2726,7 @@ do
                     local done = keybind:Change(Input.KeyCode.Name ~= "Unknown" and Input.KeyCode or Input.UserInputType)
                     if done then
                         keybind.selecting = false
+		
                         keybind.active = keybind.mode == "Always" and true or false
                         --
                         callback(Enum[keybind.current[1]][keybind.current[2]], keybind.active)
