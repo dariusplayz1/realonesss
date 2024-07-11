@@ -2041,16 +2041,22 @@ do
                 if toggle.keybind then
                     toggle.keybind.active = bool
                     toggle.keybind:Callback()
-                    --
-		  warn(toggle.keybind.mode)
-		warn(toggle.keybind.active)
-					
+		
                     if toggle.keybind.mode == "Toggle" and toggle.keybind.active then
                         window.keybindslist:Add(toggle.keybind.keybindname, toggle.keybind.current[2])
                     else
                         window.keybindslist:Remove(toggle.keybind.keybindname)
                     end
-
+ 		    if toggle.keybind.mode == "On Hold" and toggle.keybind.active then
+                        window.keybindslist:Add(toggle.keybind.keybindname, toggle.keybind.current[2])
+                    else
+                        window.keybindslist:Remove(toggle.keybind.keybindname)
+                    end
+		    if toggle.keybind.mode == "Off Hold" and toggle.keybind.active then
+                        window.keybindslist:Add(toggle.keybind.keybindname, toggle.keybind.current[2])
+                    else
+                        window.keybindslist:Remove(toggle.keybind.keybindname)
+                    end
                 end
             end
         end
@@ -3968,7 +3974,7 @@ do
                 if slider.current ~= oldval then
                     local disabledtext = disable and ((slider.current <= disable[2] or slider.current >= disable[3]) and disable[1])
                     local percent = 1 - ((slider.max - slider.current) / (slider.max - slider.min))
-                    print(percent)
+                
                     Display.Text = disabledtext or (slider.current..slider.sub) -- "/"..maxtext..slider.sub
                     Fill.Size = UDim2.new(percent,0,0,8)
                     slider.Disabled = disabledtext ~= nil and disabledtext ~= false
@@ -4123,7 +4129,7 @@ do
                 if slider.current ~= oldval then
                     local disabledtext = disable and ((slider.current <= disable[2] or slider.current >= disable[3]) and disable[1])
                     local percent = 1 - ((slider.max - slider.current) / (slider.max - slider.min))
-                    print(percent)
+                 
                     Display.Text = disabledtext or (slider.current..slider.sub) -- "/"..maxtext..slider.sub
                     Fill.Size = UDim2.new(percent,0,0,8)
                     slider.Disabled = disabledtext ~= nil and disabledtext ~= false
