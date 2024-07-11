@@ -2043,9 +2043,21 @@ do
                     toggle.keybind:Callback()
                     --
                     if toggle.keybind.mode == "Off Hold" and toggle.current then
-                       -- window.keybindslist:Add(toggle.keybind.keybindname, keybind.current[2])
+                        window.keybindslist:Add(toggle.keybind.keybindname, keybind.current[2])
                     else
-                       -- window.keybindslist:Remove(toggle.keybind.keybindname)
+                        window.keybindslist:Remove(toggle.keybind.keybindname)
+                    end
+
+	    	    if toggle.keybind.mode == "On Hold" and toggle.current then
+                        window.keybindslist:Add(toggle.keybind.keybindname, keybind.current[2])
+                    else
+                        window.keybindslist:Remove(toggle.keybind.keybindname)
+                    end
+
+	    	    if toggle.keybind.mode == "Toggle" and toggle.current then
+                        window.keybindslist:Add(toggle.keybind.keybindname, keybind.current[2])
+                    else
+                        window.keybindslist:Remove(toggle.keybind.keybindname)
                     end
                 end
             end
