@@ -643,12 +643,13 @@ do
                     Title2.Size = UDim2.new(0, 150, 0, 30)
                     Title2.FontFace = library.font
                     Title2.RichText = true
+					
 		   if keybindvalue ~= "MouseButton1" or keybindvalue ~= "MouseButton2" or keybindvalue ~= "MouseButton3" then
-		 Title2.Position = UDim2.new(0, 0, -0.00488210469, 2)
+			print(keybindvalue)
                     Title2.Text = string.format(' <font color="rgb(170, 85, 235)">  [%s]  </font><font color="rgb(121, 121, 121)">%s</font>',tostring(keybindvalue),tostring(keybindname))
                     else
-			 Title2.Position = UDim2.new(0, 0, -0.00488210469, -4)
-                        Title2.Text = string.format(' <font color="rgb(170, 85, 235)">[%s]  </font><font color="rgb(121, 121, 121)">%s</font>',tostring(keybindvalue),tostring(keybindname))
+			print(warn)
+                        Title2.Text = string.format(' <font color="rgb(170, 85, 235)">  [%s]  </font><font color="rgb(121, 121, 121)">%s</font>',tostring(keybindvalue),tostring(keybindname))
                     end
                     Title2.TextSize = 9
                     Title2.TextXAlignment = Enum.TextXAlignment.Left
