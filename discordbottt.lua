@@ -2043,7 +2043,7 @@ do
                     toggle.keybind.active = (bool and (toggle.keybind.mode == "Always" or toggle.keybind.mode == "Off Hold") or false)
                     toggle.keybind:Callback()
                     --
-                    if toggle.keybind.mode == "Off Hold" and toggle and toggle.current then
+                    if toggle.keybind.mode == "Off Hold" and toggle and keybind.current then
                         window.keybindslist:Add(toggle.keybind.keybindname, keybind.current[2])
                     else
                         window.keybindslist:Remove(toggle.keybind.keybindname)
