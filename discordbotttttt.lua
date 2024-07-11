@@ -2044,17 +2044,14 @@ do
 		
                     if toggle.keybind.mode == "Toggle" and toggle.keybind.active then
                         window.keybindslist:Add(toggle.keybind.keybindname, toggle.keybind.current[2])
-                    else
-                        window.keybindslist:Remove(toggle.keybind.keybindname)
-                    end
- 		    if toggle.keybind.mode == "On Hold" and toggle.keybind.active then
+                
+		    elseif toggle.keybind.mode == "On Hold" and toggle.keybind.active then
                         window.keybindslist:Add(toggle.keybind.keybindname, toggle.keybind.current[2])
-                    else
-                        window.keybindslist:Remove(toggle.keybind.keybindname)
-                    end
-		    if toggle.keybind.mode == "Off Hold" and toggle.keybind.active then
+               
+		    elseif toggle.keybind.mode == "Off Hold" and toggle.keybind.active then
                         window.keybindslist:Add(toggle.keybind.keybindname, toggle.keybind.current[2])
-                    else
+                   
+		else
                         window.keybindslist:Remove(toggle.keybind.keybindname)
                     end
                 end
