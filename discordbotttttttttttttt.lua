@@ -2689,6 +2689,27 @@ do
             --
             function keybind:Set(tbl)
    
+                if tbl[1] and tbl[2] then
+                    keybind.current = {tbl[1], tbl[2]}
+                    keybindbutton.Text = #keybind.current > 0 and "["..keybind:Shorten(keybind.current[2]).."]" or "[...]"
+                end
+                if tbl[3] then
+                    keybind.mode = tbl[3]
+                    keybind.active = (keybind.mode == "Always" or keybind.mode == "Off Hold") and (toggle.current) or false
+                    --
+                    if toggle.keybind.mode == "Toggle" then
+                        window.keybindslist:Add(toggle.keybind.keybindname, toggle.keybind.current[2])
+                
+		               elseif toggle.keybind.mode == "On Hold" then
+                        window.keybindslist:Add(toggle.keybind.keybindname, toggle.keybind.current[2])
+               
+		               elseif toggle.keybind.mode == "Off Hold" then
+                        window.keybindslist:Add(toggle.keybind.keybindname, toggle.keybind.current[2])
+                   
+		            else
+                        window.keybindslist:Remove(toggle.keybind.keybindname)
+                    end
+                end
                 if keybind.current[1] and keybind.current[2] then
                     callback(Enum[keybind.current[1]][keybind.current[2]], keybind.active)
                 end
