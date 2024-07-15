@@ -18,7 +18,7 @@ local hs = game:GetService("HttpService")
 local cas = game:GetService("ContextActionService")
 local plrs = game:GetService("Players")
 local stats = game:GetService("Stats")
-local core = cloneref(game:GetService("CoreGui"))
+local core = game:GetService("CoreGui")
 local dt = DateTime.now()
 --
 local localplayer = plrs.LocalPlayer
