@@ -539,7 +539,6 @@ do
             uis.MouseIconEnabled = true
 	    --
 	    core.simp:Destroy()
-	    core.keybindspewpew:Destroy()
         end
         --
         function window:KeybindsList(info)
@@ -548,23 +547,7 @@ do
             --
             local info = info or {}
 
-            -- Instances:
-
-            local keybindspewpew = Instance.new("ScreenGui")
-            local Frame = Instance.new("Frame")
-            local UIListLayout = Instance.new("UIListLayout")
-            local Back = Instance.new("Frame")
-            local Folder = Instance.new("Folder")
-            local Accent = Instance.new("Frame")
-            local Title2 = Instance.new("TextLabel")
-
-            --Properties:
-
-            keybindspewpew.Name = "keybindspewpew"
-            keybindspewpew.Parent = core
-            keybindspewpew.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
-            Frame.Parent = keybindspewpew
+            Frame.Parent = core.simp
             Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Frame.BackgroundTransparency = 1.000
             Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
