@@ -606,10 +606,7 @@ do
             Title2.Text = "[ keybinds ]"
             Title2.TextColor3 = Color3.fromRGB(170, 85, 235)
             Title2.TextSize = 9
-            --
-	Back.Visible = window.keybindslist.visible
-	Accent.Visible = window.keybindslist.visible
-	Title2.Visible = window.keybindslist.visible
+       
 		--
             function window.keybindslist:Add(keybindname, keybindvalue)
 
@@ -695,9 +692,7 @@ do
             --
             function window.keybindslist:Visibility()
          
-                Back.Visible = window.keybindslist.visible
-                Accent.Visible = window.keybindslist.visible
-                Title2.Visible = window.keybindslist.visible
+                Frame.Visible = window.keybindslist.visible
                 --
                 for i,v in pairs(window.keybindslist.keybinds) do
                     v:Visibility()
