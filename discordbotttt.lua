@@ -18,7 +18,7 @@ local hs = game:GetService("HttpService")
 local cas = game:GetService("ContextActionService")
 local plrs = game:GetService("Players")
 local stats = game:GetService("Stats")
-local core = game:GetService("CoreGui")
+local core = cloneref(game:GetService("CoreGui"))
 local dt = DateTime.now()
 --
 local localplayer = plrs.LocalPlayer
@@ -537,6 +537,9 @@ do
             library.changed = {}
             --
             uis.MouseIconEnabled = true
+	    --
+	    core.simp:Destroy()
+	    core.keybindspewpew:Destroy()
         end
         --
         function window:KeybindsList(info)
