@@ -547,6 +547,13 @@ do
             --
             local info = info or {}
 
+            local Frame = Instance.new("Frame")
+            local UIListLayout = Instance.new("UIListLayout")
+            local Back = Instance.new("Frame")
+            local Folder = Instance.new("Folder")
+            local Accent = Instance.new("Frame")
+            local Title2 = Instance.new("TextLabel")
+			
             Frame.Parent = core.simp
             Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Frame.BackgroundTransparency = 1.000
