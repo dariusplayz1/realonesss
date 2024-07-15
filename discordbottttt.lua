@@ -237,7 +237,7 @@ do
         local callback = info.callback or info.Callback or info.callBack or info.CallBack or function() end
 
          --
-         local window = {pages = {},tabsframe = nil,realtabs = nil, init = false, isVisible = false, callback = callback, uibind = Enum.KeyCode.Z, wminfo = "  Destiny $GAME || UID : $UID || Ping : $PING || Fps : $FPS || Config = $CFG", currentPage = nil, fading = false, dragging = false, currentContent = {frame = nil, dropdown = nil, multibox = nil, colorpicker = nil, keybind = nil, textbox = nil}}
+         local window = {pages = {},tabsframe = nil,realtabs = nil, init = false, isVisible = false, callback = callback, uibind = Enum.KeyCode.Z, wminfo = "  Destiny $GAME || Ping : $PING || Fps : $FPS || Config = $CFG", currentPage = nil, fading = false, dragging = false, currentContent = {frame = nil, dropdown = nil, multibox = nil, colorpicker = nil, keybind = nil, textbox = nil}}
          --
 
         --// Rendering
@@ -461,7 +461,7 @@ do
             Title2.Position = UDim2.new(0, 5, -0.00488216197, 0)
             Title2.Size = UDim2.new(1, 0, 1, 0)
             Title2.FontFace = library.font
-            Title2.Text = "  Destiny $GAME || UID : $UID || Ping : $PING || Fps : $FPS || Config = $CFG"
+            Title2.Text = "  Destiny $GAME || Ping : $PING || Fps : $FPS || Config = $CFG"
             Title2.TextColor3 = Color3.fromRGB(170, 85, 235)
             Title2.TextSize = 9
             Title2.TextXAlignment = Enum.TextXAlignment.Left
