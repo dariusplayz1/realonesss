@@ -10,6 +10,10 @@
 
 ]]
 
+loadstring([[
+    function LPH_NO_VIRTUALIZE(f) return f end;
+]])();
+
 -- // Variables
 local ws = game:GetService("Workspace")
 local uis = game:GetService("UserInputService")
@@ -43,6 +47,7 @@ local library = {
     colors = {},
     hovers = {},
     Relations = {},
+    loaded_cfg = "None",
     folders = {
         main = "Destiny",
         assets = "Destiny/Images",
@@ -174,14 +179,14 @@ do
             end
         end
         --
-        connection = utility:Connection(rs.RenderStepped, function(delta)
+        connection = utility:Connection(rs.RenderStepped, LPH_NO_VIRTUALIZE(function(delta)
             if currentTime < instanceTime then
                 currentTime = currentTime + delta
                 lerp()
             else
                 connection:Disconnect()
             end
-        end)
+        end))
     end
     --
     function utility:InputToString(Input)
@@ -479,7 +484,7 @@ do
             local temp = tick()
             local Tick = tick()
             --
-            utility:Connection(rs.RenderStepped, function(FPS)
+            utility:Connection(rs.RenderStepped, LPH_NO_VIRTUALIZE(function(FPS)
                 
                 library.shared.fps = math.floor(1 / math.abs(temp - tick()))
                 temp = tick()
@@ -488,13 +493,13 @@ do
                 --
                 task.spawn(function()
                     if (tick() - Tick) > 0.15 then
-                        Title2.Text = window.wminfo:gsub("$PING", library.shared.ping):gsub("$FPS", library.shared.fps):gsub("$UID", 0):gsub("$CFG", "None"):gsub("$GAME", "Trident Survival")
+                        Title2.Text = window.wminfo:gsub("$PING", library.shared.ping):gsub("$FPS", library.shared.fps):gsub("$CFG", library.loaded_cfg):gsub("$GAME", "Trident Survival")
             
                         --
                         Tick = tick()
                     end
                 end)
-            end)
+            end))
             --
             return window.watermark
         end
@@ -539,6 +544,7 @@ do
             library.began = {}
             library.ended = {}
             library.changed = {}
+	    library.loaded_cfg = "None"
             --
             uis.MouseIconEnabled = true
 	    --
