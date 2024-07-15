@@ -620,7 +620,7 @@ do
                     --Properties:
 
                     keybind.Name = "keybind"
-                    keybind.Parent = core.simp.Frame
+                    keybind.Parent = Frame
                     keybind.BackgroundColor3 = Color3.fromRGB(12, 12, 12)
                     keybind.BorderColor3 = Color3.fromRGB(0, 0, 0)
                     keybind.BorderSizePixel = 2
