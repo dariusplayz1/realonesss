@@ -423,7 +423,8 @@ do
             watermark.Position = UDim2.new(0, 135, 0, -27)
             watermark.Size = UDim2.new(0, 500, 0, 30)
             watermark.ZIndex = 200
-            
+            watermark.Visible = window.watermark.visible
+			
             Frame.Parent = watermark
             Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Frame.BackgroundTransparency = 1.000
@@ -431,7 +432,8 @@ do
             Frame.BorderSizePixel = 2
             Frame.Size = UDim2.new(1, 0, 1, 0)
             Frame.ZIndex = -1
-            
+            Frame.Visible = window.watermark.visible
+			
             local stra23ba2b3 = Instance.new("UIStroke",Frame)
             stra23ba2b3.Thickness = 1
             stra23ba2b3.Color = Color3.fromRGB(51, 51, 51)
@@ -443,7 +445,8 @@ do
             Accent.BorderColor3 = Color3.fromRGB(0, 0, 0)
             Accent.Position = UDim2.new(0.00499998685, -2, 0.899999917, 0)
             Accent.Size = UDim2.new(0.995, 0, 0, 2)
-            
+            Accent.Visible = window.watermark.visible
+			
             Title2.Name = "Title2"
             Title2.Parent = Frame
             Title2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -457,6 +460,7 @@ do
             Title2.TextColor3 = Color3.fromRGB(170, 85, 235)
             Title2.TextSize = 9
             Title2.TextXAlignment = Enum.TextXAlignment.Left
+	    Title2.Visible = window.watermark.visible
             --
             function window.watermark:Visibility()
                 watermark.Visible = window.watermark.visible
@@ -561,7 +565,8 @@ do
             Frame.BorderSizePixel = 0
             Frame.Position = UDim2.new(0.0073529412, 0, 0.382133991, 20)
             Frame.Size = UDim2.new(0, 94, 0, 101)
-
+	    Frame.Visible = window.keybindslist.visible
+			
             UIListLayout.Parent = Frame
             UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
 
@@ -576,6 +581,7 @@ do
 
             local str = Instance.new("UIStroke",Back)
             str.Thickness = 1
+	    str.Name = "sigma"
             str.Color = Color3.fromRGB(51, 51, 51)
             str.Enabled = true
 
@@ -601,6 +607,10 @@ do
             Title2.TextColor3 = Color3.fromRGB(170, 85, 235)
             Title2.TextSize = 9
             --
+	Back.Visible = window.keybindslist.visible
+	Accent.Visible = window.keybindslist.visible
+	Title2.Visible = window.keybindslist.visible
+		--
             function window.keybindslist:Add(keybindname, keybindvalue)
 
                 if keybindname and keybindvalue and not window.keybindslist.keybinds[keybindname] then
@@ -627,9 +637,11 @@ do
                     keybind.Position = UDim2.new(0, 0, 0.3, 0)
                     keybind.Size = UDim2.new(1.60147285, 0, 0.30, 0)
                     keybind.ZIndex = 200
-
+  		   
+					
                     local str = Instance.new("UIStroke",keybind)
-                    str.Thickness = 1
+                    str.Name = "sigma"
+		    str.Thickness = 1
                     str.Color = Color3.fromRGB(45, 45, 45)
                     str.Enabled = true
 
@@ -644,11 +656,15 @@ do
                     Title2.Size = UDim2.new(0, 150, 0, 30)
                     Title2.FontFace = library.font
                     Title2.RichText = true
-					
+		
                     Title2.Text = string.format(' <font color="rgb(170, 85, 235)">  [%s] </font><font color="rgb(121, 121, 121)">%s</font>',tostring(keybindvalue),tostring(keybindname))
                     Title2.TextSize = 9
                     Title2.TextXAlignment = Enum.TextXAlignment.Left
 
+			  keybind.Visible = window.keybindslist.visible
+                        Title2.Visible = window.keybindslist.visible
+                        Title2_2.Visible = window.keybindslist.visible
+					
                     function keybindTable:Remove()
                         
                         keybind:Destroy()
@@ -778,7 +794,7 @@ do
                         i.Visible = not window.isVisible
                         
                         for i,v in pairs(simp:GetDescendants()) do
-                            if v.ClassName == "UIStroke" and v.Parent.Parent.Name ~= "watermark" then
+                            if v.ClassName == "UIStroke" and v.Parent.Parent.Name ~= "watermark" and v.Name ~= "sigma" then
                                 v.Enabled = not window.isVisible
                             end
                             if v.ClassName == "UIGradient" and v.Parent.Name ~= "Frame" and v.Parent.Name ~= "Button" then
