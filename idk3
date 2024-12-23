@@ -687,8 +687,14 @@ do -- ESP Functions
         Components.Box = Framework:Draw("Square")
         Components.Box.Thickness = 1
         Components.Box.ZIndex = 2
-        Components.Healthbar_Outline = Framework:Draw("Square", {Thickness = 3, ZIndex = -1, Filled = true})
-        Components.Healthbar = Framework:Draw("Square", {Thickness = 1, ZIndex = 2, Filled = true})
+        Components.Healthbar_Outline = Framework:Draw("Square")
+        Components.Healthbar_Outline.Thickness = 3
+        Components.Healthbar_Outline.ZIndex = -1
+        Components.Healthbar_Outline.Filled = true
+        Components.Healthbar = Framework:Draw("Square")
+        Components.Healthbar.Thickness = 1
+        Components.Healthbar.ZIndex = 2
+        Components.Healthbar.Filled = true
         Components.Name = Framework:Draw("Text", {Text = Instance.Name, Font = 2, Size = 13, Outline = true, Center = true})
         Components.NameBold = Framework:Draw("Text", {Text = Instance.Name, Font = 2, Size = 13, Center = true})
         Components.Distance = Framework:Draw("Text", {Font = 2, Size = 13, Outline = true, Center = true})
