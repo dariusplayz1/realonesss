@@ -325,6 +325,8 @@ do -- Player Metatable
                     -- Box
 
                     local Box_Outline_Settings = ESP.Settings.Box_Outline
+                    local Box_Settings = ESP.Settings.Box
+
                     Box_Outline.Size = Box_Size
                     Box_Outline.Position = Box_Position
                     Box_Outline.Thickness = 3
@@ -332,7 +334,6 @@ do -- Player Metatable
                     Box_Outline.Transparency = Framework:Drawing_Transparency(Box_Outline_Settings.Transparency)
                     Box_Outline.Visible = Box_Settings.Enabled and Box_Outline_Settings.Enabled or false
 
-                    local Box_Settings = ESP.Settings.Box
                     Box.Size = Box_Size
                     Box.Position = Box_Position
                     Box.Color = Is_Highlighted and Highlight_Color or Box_Settings.Color
