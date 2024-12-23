@@ -25,7 +25,7 @@ local Framework = {}; Framework.__index = Framework; do
     function Framework:Draw(Object, Properties)
         Object = Drawing.new(Object)
         for Property, Value in pairs(Properties) do
-            DrawingObject[Property] = Value
+            Object[Property] = Value
         end
         return Object
     end
