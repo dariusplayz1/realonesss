@@ -336,7 +336,8 @@ do -- Player Metatable
                     Box_Outline.Thickness = 4
                     Box_Outline.Transparency = Framework:Drawing_Transparency(Box_Outline_Settings.Transparency)
                     Box_Outline.Visible = Box_Settings.Enabled and Box_Outline_Settings.Enabled or false
-                   
+                    print("Outline | " .. "Thickness: ".. Box_Outline.Thickness .. " | ".. Box_Outline.Visible)
+                    print("Box | " .. "Thickness: ".. Box.Thickness .. " | ".. Box.Visible)
                     -- Box
                    
                     Box.Size = Box_Size
