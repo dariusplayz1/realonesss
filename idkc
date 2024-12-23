@@ -23,9 +23,9 @@ local Framework = {}; Framework.__index = Framework; do
         return Vector2.new(V3.X, V3.Y)
     end
     function Framework:Draw(Object, Properties)
-        Object = Drawing.new(Object)
+        DrawingObject = Drawing.new(Object)
         for Property, Value in pairs(Properties) do
-            Object[Property] = Value
+            DrawingObject[Property] = Value
             print(tostring(Object).."|"..tostring(Property).."|"..tostring(Value))
         end
         return Object
