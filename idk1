@@ -689,7 +689,7 @@ do -- ESP Functions
         Components.Box.ZIndex = 2
         Components.Healthbar_Outline = Framework:Draw("Square")
         Components.Healthbar_Outline.Thickness = 3
-        Components.Healthbar_Outline.ZIndex = -1
+        Components.Healthbar_Outline.ZIndex = 1
         Components.Healthbar_Outline.Filled = true
         Components.Healthbar = Framework:Draw("Square")
         Components.Healthbar.Thickness = 1
