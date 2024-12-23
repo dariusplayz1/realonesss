@@ -24,10 +24,8 @@ local Framework = {}; Framework.__index = Framework; do
     end
     function Framework:Draw(Object, Properties)
         Object = Drawing.new(Object)
-        if Properties then
         for Property, Value in pairs(Properties) do
             Object[Property] = Value
-        end
         end
         return Object
     end
@@ -98,7 +96,7 @@ local ESP; ESP = {
         Object_Maximal_Distance = 1000,
         Highlight = {Enabled = false, Color = Color3.new(1, 0, 0), Target = ""},
         Box = {Enabled = false, Color = Color3.new(1, 1, 1), Transparency = 0},
-        Box_Outline = {Enabled = false, Color = Color3.new(0, 0, 0), Transparency = 0, Outline_Size = 2},
+        Box_Outline = {Enabled = false, Color = Color3.new(0, 0, 0), Transparency = 0, Outline_Size = 1},
         Healthbar = {Enabled = false, Position = "Left", Color = Color3.new(1, 1, 1), Color_Lerp = Color3.fromRGB(40, 252, 3)},
         Name = {Enabled = false, Position = "Top", Color = Color3.new(1, 1, 1), Transparency = 0, OutlineColor = Color3.new(0, 0, 0)},
         Distance = {Enabled = false, Position = "Bottom", Color = Color3.new(1, 1, 1), Transparency = 0, OutlineColor = Color3.new(0, 0, 0)},
@@ -242,8 +240,7 @@ do -- Player Metatable
         ESP.Objects[self.Player] = nil
     end
     function Player_Metatable:Update()
-        local Box = self.Components.Box
-        local Box_Outline = self.Components.Box_Outline
+        local Box, Box_Outline = self.Components.Box, self.Components.Box_Outline
         local Healthbar, Healthbar_Outline = self.Components.Healthbar, self.Components.Healthbar_Outline
         local Name, NameBold = self.Components.Name, self.Components.NameBold
         local Distance, DistanceBold = self.Components.Distance, self.Components.DistanceBold
@@ -325,27 +322,21 @@ do -- Player Metatable
                     local Left_Offset = 0
                     local Right_Offset = 0
 
-                   
-
-                    local Box_Outline_Settings = ESP.Settings.Box_Outline
-                    local Box_Settings = ESP.Settings.Box
-
-                    Box_Outline.Size = Box_Size
-                    Box_Outline.Position = Box_Position
-                    Box_Outline.Color = Box_Outline_Settings.Color
-                    Box_Outline.Transparency = Framework:Drawing_Transparency(Box_Outline_Settings.Transparency)
-                    Box_Outline.Visible = Box_Settings.Enabled and Box_Outline_Settings.Enabled or false
-                    print("Outline | " .. "Thickness: ".. Box_Outline.Thickness .. " | ".. tostring(Box_Outline.Visible))
-                    print("Box | " .. "Thickness: ".. Box.Thickness .. " | ".. tostring(Box.Visible))
                     -- Box
-                   
+                    local Box_Settings = ESP.Settings.Box
                     Box.Size = Box_Size
                     Box.Position = Box_Position
                     Box.Color = Is_Highlighted and Highlight_Color or Box_Settings.Color
                     Box.Transparency = Framework:Drawing_Transparency(Box_Settings.Transparency)
                     Box.Visible = Box_Settings.Enabled
-                    
 
+                    local Box_Outline_Settings = ESP.Settings.Box_Outline
+                    Box_Outline.Size = Box_Size
+                    Box_Outline.Position = Box_Position
+                    Box_Outline.Color = Box_Outline_Settings.Color
+                    Box_Outline.Thickness = Box_Outline_Settings.Outline_Size + 2
+                    Box_Outline.Transparency = Framework:Drawing_Transparency(Box_Outline_Settings.Transparency)
+                    Box_Outline.Visible = Box_Settings.Enabled and Box_Outline_Settings.Enabled or false
 
                     local Image_Settings = ESP.Settings.Image
                     local Image_Enabled = Image_Settings.Enabled
@@ -681,20 +672,10 @@ do -- ESP Functions
             self:GetObject(Instance):Destroy()
         end
         local Components = Object.Components
-        Components.Box_Outline = Framework:Draw("Square")
-        Components.Box_Outline.Thickness = 3
-        Components.Box_Outline.ZIndex = 1
-        Components.Box = Framework:Draw("Square")
-        Components.Box.Thickness = 1
-        Components.Box.ZIndex = 2
-        Components.Healthbar_Outline = Framework:Draw("Square")
-        Components.Healthbar_Outline.Thickness = 3
-        Components.Healthbar_Outline.ZIndex = 2
-        Components.Healthbar_Outline.Filled = true
-        Components.Healthbar = Framework:Draw("Square")
-        Components.Healthbar.Thickness = 1
-        Components.Healthbar.ZIndex = 1
-        Components.Healthbar.Filled = true
+        Components.Box = Framework:Draw("Square", {Thickness = 1, ZIndex = 2})
+        Components.Box_Outline = Framework:Draw("Square", {Thickness = 3, ZIndex = 1})
+        Components.Healthbar = Framework:Draw("Square", {Thickness = 1, ZIndex = 2, Filled = true})
+        Components.Healthbar_Outline = Framework:Draw("Square", {Thickness = 3, ZIndex = 1, Filled = true})
         Components.Name = Framework:Draw("Text", {Text = Instance.Name, Font = 2, Size = 13, Outline = true, Center = true})
         Components.NameBold = Framework:Draw("Text", {Text = Instance.Name, Font = 2, Size = 13, Center = true})
         Components.Distance = Framework:Draw("Text", {Font = 2, Size = 13, Outline = true, Center = true})
