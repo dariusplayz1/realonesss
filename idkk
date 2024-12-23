@@ -322,10 +322,14 @@ do -- Player Metatable
                     local Left_Offset = 0
                     local Right_Offset = 0
 
+                   
+
+                    local Box_Outline_Settings = ESP.Settings.Box_Outline
+                    local Box_Settings = ESP.Settings.Box
+
                     Box_Outline.ZIndex = -1
                     Box.ZIndex = 1
 
-                    local Box_Outline_Settings = ESP.Settings.Box_Outline
                     Box_Outline.Size = Box_Size
                     Box_Outline.Position = Box_Position
                     Box_Outline.Color = Box_Outline_Settings.Color
@@ -334,7 +338,6 @@ do -- Player Metatable
                     Box_Outline.Visible = Box_Settings.Enabled and Box_Outline_Settings.Enabled or false
                    
                     -- Box
-                    local Box_Settings = ESP.Settings.Box
                     Box.Size = Box_Size
                     Box.Position = Box_Position
                     Box.Thickness = Box_Outline_Settings.Outline_Size
