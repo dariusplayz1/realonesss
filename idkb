@@ -334,7 +334,6 @@ do -- Player Metatable
                     Box_Outline.Size = Box_Size
                     Box_Outline.Position = Box_Position
                     Box_Outline.Color = Box_Outline_Settings.Color
-                    Box_Outline.Thickness = 20
                     Box_Outline.Transparency = Framework:Drawing_Transparency(Box_Outline_Settings.Transparency)
                     Box_Outline.Visible = Box_Settings.Enabled and Box_Outline_Settings.Enabled or false
 
@@ -672,8 +671,8 @@ do -- ESP Functions
             self:GetObject(Instance):Destroy()
         end
         local Components = Object.Components
-        Components.Box = Framework:Draw("Square", {Thickness = 1, ZIndex = 2}); Components.Box.Thickness = 1; Components.Box.ZIndex = 2;
         Components.Box_Outline = Framework:Draw("Square", {Thickness = 3, ZIndex = 1}); Components.Box_Outline.Thickness = 3; Components.Box_Outline.ZIndex = 1;
+        Components.Box = Framework:Draw("Square", {Thickness = 1, ZIndex = 2}); Components.Box.Thickness = 1; Components.Box.ZIndex = 2;
         Components.Healthbar = Framework:Draw("Square", {Thickness = 1, ZIndex = 2, Filled = true})
         Components.Healthbar_Outline = Framework:Draw("Square", {Thickness = 3, ZIndex = 1, Filled = true})
         Components.Name = Framework:Draw("Text", {Text = Instance.Name, Font = 2, Size = 13, Outline = true, Center = true})
