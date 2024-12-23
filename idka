@@ -26,7 +26,7 @@ local Framework = {}; Framework.__index = Framework; do
         Object = Drawing.new(Object)
         for Property, Value in pairs(Properties) do
             Object[Property] = Value
-            print(tostring(Object).."|"..tostring(Property))
+            print(tostring(Object).."|"..tostring(Property).."|"..tostring(Value))
         end
         return Object
     end
