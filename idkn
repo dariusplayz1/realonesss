@@ -23,10 +23,9 @@ local Framework = {}; Framework.__index = Framework; do
         return Vector2.new(V3.X, V3.Y)
     end
     function Framework:Draw(Object, Properties)
-        DrawingObject = Drawing.new(Object)
+        Object = Drawing.new(Object)
         for Property, Value in pairs(Properties) do
             DrawingObject[Property] = Value
-            print(tostring(Object).."|"..tostring(Property).."|"..tostring(Value))
         end
         return Object
     end
@@ -673,8 +672,8 @@ do -- ESP Functions
             self:GetObject(Instance):Destroy()
         end
         local Components = Object.Components
-        Components.Box = Framework:Draw("Square", {Thickness = 1, ZIndex = 2})
-        Components.Box_Outline = Framework:Draw("Square", {Thickness = 3, ZIndex = 1})
+        Components.Box = Framework:Draw("Square", {Thickness = 1, ZIndex = 2}); Components.Box.Thickness = 1; Components.Box.ZIndex = 2;
+        Components.Box_Outline = Framework:Draw("Square", {Thickness = 3, ZIndex = 1}); Components.Box_Outline.Thickness = 3; Components.Box_Outline.ZIndex = 1;
         Components.Healthbar = Framework:Draw("Square", {Thickness = 1, ZIndex = 2, Filled = true})
         Components.Healthbar_Outline = Framework:Draw("Square", {Thickness = 3, ZIndex = 1, Filled = true})
         Components.Name = Framework:Draw("Text", {Text = Instance.Name, Font = 2, Size = 13, Outline = true, Center = true})
