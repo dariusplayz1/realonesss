@@ -339,7 +339,6 @@ do -- Player Metatable
                    
                     Box.Size = Box_Size
                     Box.Position = Box_Position
-                    Box.Thickness = Box_Outline_Settings.Outline_Size
                     Box.Color = Is_Highlighted and Highlight_Color or Box_Settings.Color
                     Box.Transparency = Framework:Drawing_Transparency(Box_Settings.Transparency)
                     Box.Visible = Box_Settings.Enabled
