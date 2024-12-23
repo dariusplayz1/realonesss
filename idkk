@@ -240,8 +240,8 @@ do -- Player Metatable
         ESP.Objects[self.Player] = nil
     end
     function Player_Metatable:Update()
-        local Box = self.Components.Box
         local Box_Outline = self.Components.Box_Outline
+        local Box = self.Components.Box
         local Healthbar, Healthbar_Outline = self.Components.Healthbar, self.Components.Healthbar_Outline
         local Name, NameBold = self.Components.Name, self.Components.NameBold
         local Distance, DistanceBold = self.Components.Distance, self.Components.DistanceBold
@@ -329,8 +329,6 @@ do -- Player Metatable
                     local Box_Settings = ESP.Settings.Box
 
                     Box_Outline.ZIndex = -1
-                    Box.ZIndex = 1
-
                     Box_Outline.Size = Box_Size
                     Box_Outline.Position = Box_Position
                     Box_Outline.Color = Box_Outline_Settings.Color
@@ -339,6 +337,7 @@ do -- Player Metatable
                     Box_Outline.Visible = Box_Settings.Enabled and Box_Outline_Settings.Enabled or false
                    
                     -- Box
+                    Box.ZIndex = 1
                     Box.Size = Box_Size
                     Box.Position = Box_Position
                     Box.Thickness = Box_Outline_Settings.Outline_Size
