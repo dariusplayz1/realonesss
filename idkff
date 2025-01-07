@@ -343,7 +343,7 @@ do -- Player Metatable
                     Box.Transparency = Framework:Drawing_Transparency(Box_Settings.Transparency)
                     Box.Visible = Box_Settings.Enabled
 
-                    print(Box_Outline.Thickness,Box.Thickness)
+                    print(Box_Outline.Transparency,Box.Transparency)
 
                     local Image_Settings = ESP.Settings.Image
                     local Image_Enabled = Image_Settings.Enabled
