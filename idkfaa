@@ -331,7 +331,7 @@ do -- Player Metatable
 
                     Box_Outline.Size = Box_Size
                     Box_Outline.Position = Box_Position
-                    Box_Outline.Thickness = 3
+                    Box_Outline.Thickness = 6
                     Box_Outline.Color = Box_Outline_Settings.Color
                     Box_Outline.Transparency = Framework:Drawing_Transparency(Box_Outline_Settings.Transparency)
                     Box_Outline.Visible = Box_Outline_Settings.Enabled
@@ -342,8 +342,6 @@ do -- Player Metatable
                     Box.Thickness = 1
                     Box.Transparency = Framework:Drawing_Transparency(Box_Settings.Transparency)
                     Box.Visible = Box_Settings.Enabled
-
-                    print(Box_Outline.Transparency,Box.Transparency)
 
                     local Image_Settings = ESP.Settings.Image
                     local Image_Enabled = Image_Settings.Enabled
